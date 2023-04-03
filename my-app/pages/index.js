@@ -35,10 +35,10 @@ export default function Home() {
   const [  count, setCount]= useState(0)
 
   function handelClick(){
-    setCount(count+1)
+    setCount(c=>c*2)
   }
   function reSet(){
-    setCount(10)
+    setCount(1)
   }
   return (
     <>
