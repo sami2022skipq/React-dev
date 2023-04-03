@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import Component from './component'
+import { SecondComponenet } from './component'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
@@ -50,11 +52,17 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
 
-        
+        <div>
+          <SecondComponenet name ="Sami"/>
+          <SecondButton className="background: red"/>         
+          <Component/> 
+          <Component/> 
+          <Component/> 
+
+        </div>
         <div className={styles.helloworld}>
           <h1>Hellow world From React new app</h1>
           <Mybutton/>
-          
           <MybuttonCount  count={count} onClick={handelClick}/>
           <MybuttonCount  count={count} onClick={handelClick}/>
           <MybuttonCount  count={count} onClick={handelClick}/>
@@ -88,5 +96,10 @@ export default function Home() {
     <button onClick={onClick}>
       Count {count} times
     </button>
+  )
+ }
+ function SecondButton(){
+  return (
+    <button > This is My Second button </button>
   )
  }
