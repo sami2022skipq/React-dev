@@ -34,7 +34,7 @@ const items= products.map(item=>
 
 
 export default function Home() {
-  const [  count, setCount]= useState(0)
+  const [count, setCount]= useState(0)
 
   function handelClick(){
     setCount(c=>c*2)

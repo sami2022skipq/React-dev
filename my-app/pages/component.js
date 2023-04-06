@@ -7,8 +7,19 @@ export  default function Component(){
 
 export function SecondComponenet({name}){
     return (
-        <h1>
-            I am  Second Component from {name}
-        </h1>
+        <>
+        
+            <Time/>
+            <h1>
+                I am  Second Component from {name}
+            </h1>
+        </>
+    )
+}   
+
+
+function Time (){
+    return(
+        <h1>Nested Component</h1>
     )
 }
