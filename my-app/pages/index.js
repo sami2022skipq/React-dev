@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Component from './component'
 import { SecondComponenet } from './component'
+import Projet from './Projetc'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
