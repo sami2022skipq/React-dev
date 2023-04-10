@@ -10,9 +10,20 @@ export default function Component() {
             <h1>this is an external Component witha a state number : {count}</h1>
             <button onClick={()=>
                     setCount((prev)=>prev+1)
-            }>
+            }
+            >
                 State Update
             </button>
+            <div className='d-grid'>
+
+            <button  onClick={()=>
+                    setCount((prev)=>prev+1)
+            }   
+            type="button" class="btn btn-danger btn-lg btn-block btn-outline-light text-dark"
+            >
+                Light Update
+            </button>
+            </div>
         </>
     )
 }
