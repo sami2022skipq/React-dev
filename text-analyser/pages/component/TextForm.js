@@ -28,7 +28,6 @@ export default function TextForm() {
             </div>
             <div className="container my-5">
                 <h2>
-
                     Text Summary
                 </h2>
                 <p>
