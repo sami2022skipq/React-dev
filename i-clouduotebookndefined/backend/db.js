@@ -1,13 +1,16 @@
 const mongoose = require('mongoose')
-const mongoURI ="mongodb://localhost:2701"
-
-
+const mongoURI ="mongodb+srv://AbdulSAmi:ASMaccounts44@cluster0.rmvxjuc.mongodb.net/test"
 
 const connectToMonggo =()=>{
+    // 
     mongoose.connect(mongoURI)
-    {
-        console.log("just checking")
-    }
+    .then(() => {
+            console.log("ok je ho gaya connect finally");
+        },
+        err => { 
+            console.log('error: '+ err)
+        }
+    );
 }
 
 module.exports = connectToMonggo;
