@@ -10,7 +10,7 @@ export default function TextForm() {
         setText(prev => prev.toLocaleLowerCase())
     }
     function restClick() {
-        setText(prev => "")
+        setText(prev => prev="")
     }
     function changeText(event) {
         // console.log("Chang text")
