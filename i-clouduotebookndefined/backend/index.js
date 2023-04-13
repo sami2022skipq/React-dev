@@ -1,10 +1,14 @@
 
+const connectToMonggo=  require('./db')
+
 const express = require('express')
+connectToMonggo();  
+
 const app = express()
 const port = 3000
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello from the other side!')
 })
 
 app.listen(port, () => {

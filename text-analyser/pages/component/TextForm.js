@@ -22,9 +22,12 @@ export default function TextForm() {
                 <div className="input-group mb-3">
                     <textarea className="form-control" value={text} id="myBox" rows={8} onChange={changeText} />
                 </div>
-                <button type="btn" className="btn btn-danger mx-10" onClick={handelClickUpper}>Convert To Uppercase</button>
-                <button type="btn" className="btn btn-danger mx-10" onClick={handelClickLower}>Convert To Lowercase</button>
-                <button type="btn" className="btn btn-danger mx-10" onClick={restClick}>Clear Text</button>
+                <div className="my-100 bg-red">
+                    <button type="btn" className="btn btn-danger mx-10" onClick={handelClickUpper}>Convert To Uppercase</button>
+                    <button type="btn" className="btn btn-danger mx-10" onClick={handelClickLower}>Convert To Lowercase</button>
+                    <button type="btn" className="btn btn-danger mx-10" onClick={restClick}>Clear Text</button>
+
+                </div>
             </div>
             <div className="container my-5">
                 <h2>
