@@ -1,14 +1,11 @@
 const express = require('express')
 const router = express.Router()
 
-
 router.get('/', (req, res)=>{
 
-    obj = {
-        name: "sami",
-        age : 31
-    }
-    res.send(obj)
+    // 
+    console.log(req.body)
+    res.send("hellow from auth")
 })
 
 
