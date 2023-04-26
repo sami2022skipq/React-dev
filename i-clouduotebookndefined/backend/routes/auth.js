@@ -4,18 +4,15 @@ const bcrypt = require('bcryptjs')
 const User = require('../models/User')
 const { body, validationResult } = require('express-validator');
 const router = express.Router()
-
+const jwt = require('jsonwebtoken')
 // Create user using POST "/api/auth/createUser". No login required
-
+const JWt_secret="mySecretSAMI"
 router.post('/createUser', [
 
     // Basic critaria for creating a new user
     body('name', "Name should be atleast three characters").isLength({ min: 3 }),
     body('email', "Enter a valid email").isEmail(),
     body('password', "Minimum password length has to be five characters ").isLength({ min: 5 }),
-
-
-
 
 ], async (req, res) => {
     // if there is an error return bad req 400, and erros
@@ -25,9 +22,6 @@ router.post('/createUser', [
     }
     // check weathere user with this email already exsist or not 
     try {
-
-
-
         let user = await User.findOne({ email: req.body.email })
         if (user) {
             return res.status(400).json({ error: `User with email '${user.email}' already exsist` })
@@ -41,8 +35,18 @@ router.post('/createUser', [
             email: req.body.email,
             password: secPass,
         })
+        //Enabling JWT auth token 
+        const data = {
+            user:{
+                id:user.id,
 
-        res.json(user)
+            }
+        }
+        const authToken =jwt.sign(data,  JWt_secret)
+        console.log(authToken)
+
+        res.json({authToken})
+        // res.json(user)
     } catch (error) {
         console.log("here is the error " ,error.message)
         res.status(500).send("some error has occourd ")
