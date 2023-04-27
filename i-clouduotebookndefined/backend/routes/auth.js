@@ -100,11 +100,11 @@ router.post('/login', [
     } catch (error) {
         console.log("here is the error ", error.message)
         res.status(500).send("Internal Server error ")
-        
-        
+
+
     }
-    
-    
+
+
 })
 
 
@@ -113,8 +113,7 @@ router.post('/login', [
 router.post('/getuser', fetchuser, async (req, res) => {
     try {
 
-        const userId= req.user.id
-        console.log(req.user)
+        const userId = req.user.id   // geting userId from fetchuser
         const user = await User.findById(userId).select("-password")
         res.send(user)
 
@@ -122,7 +121,7 @@ router.post('/getuser', fetchuser, async (req, res) => {
 
 
     } catch (error) {
-        
+
         console.log("here is the error ", error.message)
         res.status(500).send("Internal Server error ")
     }
