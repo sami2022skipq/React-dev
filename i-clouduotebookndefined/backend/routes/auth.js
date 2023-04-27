@@ -5,8 +5,10 @@ const User = require('../models/User')
 const { body, validationResult } = require('express-validator');
 const router = express.Router()
 const jwt = require('jsonwebtoken')
+
+
 // Create user using POST "/api/auth/createUser". No login required
-const JWt_secret="mySecretSAMI"
+const JWt_secret = "mySecretSAMI"
 router.post('/createUser', [
 
     // Basic critaria for creating a new user
@@ -28,7 +30,7 @@ router.post('/createUser', [
         }
 
         let salt = bcrypt.genSaltSync(10)
-        let secPass =   bcrypt.hashSync(req.body.password, salt)
+        let secPass = bcrypt.hashSync(req.body.password, salt)
 
         user = await User.create({
             name: req.body.name,
@@ -37,38 +39,71 @@ router.post('/createUser', [
         })
         //Enabling JWT auth token 
         const data = {
-            user:{
-                id:user.id,
+            user: {
+                id: user.id,
 
             }
         }
-        const authToken =jwt.sign(data,  JWt_secret)
+        const authToken = jwt.sign(data, JWt_secret)
         console.log(authToken)
 
-        res.json({authToken})
+        res.json({ authToken })
         // res.json(user)
     } catch (error) {
-        console.log("here is the error " ,error.message)
-        res.status(500).send("some error has occourd ")
+        console.log("here is the error ", error.message)
+        res.status(500).send("Internal Server error ")
 
     }
-    // .then(user=>res.json(user))
-    // .catch(err=>{
-    //     console.log(err)
-    //     res.json({
-    //         error: "Please enter a valid email adress", message: err.message
-    //     })
-
-    // })
-
-
-    // console.log(req.body)
-    // // res.send("hellow from auth") 
-    // const user = User(req.body)
-    // user.save()
-    // res.send(req.body)
 
 })
+
+router.post('/login', [
+
+    // Basic critaria for creating a new user
+    body('email', "Enter a valid email").isEmail(),
+    body('password', "Minimum password length has to be five characters ").isLength({ min: 5 }),
+
+], async (req, res) => {
+
+    // if there is an error return bad req 400, and erros
+    const result = validationResult(req);
+    if (!result.isEmpty()) {
+        return res.status(400).json({ errors: result.array() });
+    }
+
+    const { email, password } = req.body;
+
+    try {
+        let user = await User.findOne({ email })
+        if (!user) {
+            return res.status(400).json({ error: `Please login with correct credentials ` })
+        }
+        let passwordCompare = bcrypt.compareSync(password, user.password)
+        if (!passwordCompare) {
+            return res.status(400).json({ error: `Please login with correct credentials` })
+        }
+
+
+        const data = {
+            user: {
+                id: user.id,
+
+            }
+        }
+        const authToken = jwt.sign(data, JWt_secret)
+        console.log(authToken)
+
+        res.json({ authToken })
+    } catch (error) {
+        console.log("here is the error ", error.message)
+        res.status(500).send("Internal Server error ")
+
+
+    }
+
+
+}
+)
 
 
 module.exports = router
