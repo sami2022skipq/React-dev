@@ -92,7 +92,7 @@ router.put('/updatenote/:id', fetchuser, async (req, res) => {
 
     }
 })
-// ROUTE 4: Delete a note Delete "/api/notes/deletenote":  login required
+// ROUTE 4: Delete a note DELETE "/api/notes/deletenote":  login required
 
 
 router.delete('/deletenote/:id', fetchuser, async (req, res) => {
