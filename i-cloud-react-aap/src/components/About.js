@@ -1,5 +1,5 @@
 import noteContext from '../context/notes/noteContext';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 export default function About() {
 
     const a = useContext(noteContext)
@@ -13,8 +13,7 @@ export default function About() {
         <ul className='container my-3'>
             <h2>Bio</h2>
 
-            <h1>{a.state[1].title}</h1>
-            {a.state.map((note) => {
+            {a.notes.map((note) => {
 
                 return (
                     <>
