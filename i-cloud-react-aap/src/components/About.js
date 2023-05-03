@@ -10,7 +10,7 @@ export default function About() {
     }, [])
 
     return (
-        <ul>
+        <ul className='container my-3'>
             <h2>Bio</h2>
             <li>{a.state.name}</li>
             <li>{a.state.class}</li>
