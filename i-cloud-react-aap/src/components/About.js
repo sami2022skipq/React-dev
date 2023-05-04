@@ -14,7 +14,6 @@ export default function About() {
             <h2>Bio</h2>
 
             {a.notes.map((note) => {
-
                 return (
                     <>
                         <li>
@@ -36,9 +35,7 @@ export default function About() {
 
                         </li>
                     </>
-                )
-
-
+                );
             })}
 
 
