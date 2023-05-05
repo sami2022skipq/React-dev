@@ -1,16 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect} from "react";
 import noteContext from "../context/notes/noteContext";
 
 const AddNotes = () => {
     const context = useContext(noteContext)
-    const { addNote} = context
-
-    // git comment
-
+    const { addNote, getNotes} = context
+    
+    
     const [note, setNote]= useState({title:"", discription:"", tag : "Default"})
     const handelClick=(e)=>{
         e.preventDefault()
         addNote(note.title, note.discription, note.tag)
+       
+        getNotes()
 
         
     }
