@@ -5,7 +5,7 @@ const AddNotes = () => {
     const context = useContext(noteContext)
     const { addNote} = context
 
-    
+    // git comment
 
     const [note, setNote]= useState({title:"", discription:"", tag : "Default"})
     const handelClick=(e)=>{
