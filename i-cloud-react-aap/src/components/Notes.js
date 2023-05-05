@@ -5,16 +5,16 @@ import AddNote from './AddNote';
 
 const Notes = () => {
     const context = useContext(noteContext)
-    const { notes ,getNotes,} = context
-    
-    useEffect(()=>{
+    const { notes, getNotes } = context
+
+    useEffect(() => {
         getNotes()
     }, [])
 
     return (
         <>
             <AddNote />
-            
+
             <div className='row my-3'>
                 <h2>Your notes</h2>
                 {notes.map((note) => {
