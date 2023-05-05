@@ -10,9 +10,8 @@ const AddNotes = () => {
     const handelClick=(e)=>{
         e.preventDefault()
         addNote(note.title, note.discription, note.tag)
-       
+       // updating notes in realtime while adding
         getNotes()
-
         
     }
     const onChange=(e)=>{

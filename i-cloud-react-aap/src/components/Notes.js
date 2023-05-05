@@ -9,8 +9,8 @@ const Notes = () => {
 
     useEffect(() => {
         getNotes()
-         // eslint-disable-next-line
-        }, [])
+        // eslint-disable-next-line
+    }, [])
 
     return (
         <>
