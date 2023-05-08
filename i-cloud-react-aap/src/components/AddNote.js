@@ -3,7 +3,7 @@ import noteContext from "../context/notes/noteContext";
 
 const AddNotes = () => {
     const context = useContext(noteContext)
-    const { addNote, getNotes} = context
+    const { addNote} = context
     
     
     const [note, setNote]= useState({title:"", discription:"", tag : "Default"})
@@ -40,7 +40,7 @@ const AddNotes = () => {
                     <input type="text" className="form-control" id="tag" name= "tag" onChange={onChange}/>
                 </div>
                
-                <button type="submit" className="btn btn-primary" onClick={handelClick}>Add Note</button>
+                <button disabled={note.title.length < 5 || note.discription.length <5} type="submit" className="btn btn-primary" onClick={handelClick}>Add Note</button>
             </form>
         </div>
     )

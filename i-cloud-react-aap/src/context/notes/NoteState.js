@@ -34,8 +34,8 @@ const NoteStatus = (props) => {
       },
       body: JSON.stringify({ title, discription, tag }),
     })
-    const json = await response.json()
-    console.log(json)
+    const note = await response.json()
+    console.log(note)
     // const note = {
     //   "_id": "644a8a52fce16cf3b9f7bd11a3",
     //   "user": "6448e99999f6bd8b41aae3d5",
@@ -45,8 +45,8 @@ const NoteStatus = (props) => {
     //   "date": "2023-04-27T14:44:34.205Z",
     //   "__v": 0
     // }
-    // setNotes(notes.concat(note))
-    getNotes()
+    setNotes(notes.concat(note))
+    // getNotes()
 
   }
   //  *****************************                    Delete a Note            *******************************************************

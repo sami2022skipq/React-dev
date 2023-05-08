@@ -4,7 +4,7 @@ import NoteItem from './NoteItem';
 export default function About() {
 
     const context = useContext(noteContext)
-    const { notes, getNotes } = context
+    const { notes } = context
 
 
     // useEffect(() => {
