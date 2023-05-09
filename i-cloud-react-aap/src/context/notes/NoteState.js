@@ -82,13 +82,13 @@ const NoteStatus = (props) => {
         "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ0OGU5OTk5OWY2YmQ4YjQxYWFlM2Q1In0sImlhdCI6MTY4MjU5MDg0Nn0.LbzJWALs07pWBOPMy0soTpsH31-kv9n5j9fSBNNq8vI"
 
       },
-      body: JSON.stringify({title, discription, tag}),
+      body: JSON.stringify({ title, discription, tag }),
     })
-    const json =await response.json();
+    const json = await response.json();
     console.log(json)
 
     // Logic to edit in client
-    let newNotes= JSON.parse(JSON.stringify(notes))
+    let newNotes = JSON.parse(JSON.stringify(notes))
 
     for (let index = 0; index < newNotes.length; index++) {
       let element = newNotes[index];

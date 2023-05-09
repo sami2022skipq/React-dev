@@ -19,6 +19,7 @@ router.post('/createUser', [
     body('password', "Minimum password length has to be five characters ").isLength({ min: 5 }),
 
 ], async (req, res) => {
+    let success = false
     // if there is an error return bad req 400, and erros
     const result = validationResult(req);
     if (!result.isEmpty()) {
@@ -28,7 +29,8 @@ router.post('/createUser', [
     try {
         let user = await User.findOne({ email: req.body.email })
         if (user) {
-            return res.status(400).json({ error: `User with email '${user.email}' already exsist` })
+            
+            return res.status(400).json({success, error: `User with email '${user.email}' already exsist` })
         }
         // generating password hash for user, 
         let salt = bcrypt.genSaltSync(10)
@@ -47,8 +49,8 @@ router.post('/createUser', [
             }
         }
         const authToken = jwt.sign(data, JWt_secret)
-
-        res.json({ authToken })
+        success= true
+        res.json({success,  authToken })
     } catch (error) {
         console.log("here is the error ", error.message)
         res.status(500).send("Internal Server error ")
@@ -66,6 +68,7 @@ router.post('/login', [
     body('password', "Minimum password length has to be five characters ").isLength({ min: 5 }),
 
 ], async (req, res) => {
+    let success= false
 
     // if there is an error return bad req 400, and erros
     const result = validationResult(req);
@@ -78,11 +81,13 @@ router.post('/login', [
     try {
         let user = await User.findOne({ email })
         if (!user) {
-            return res.status(400).json({ error: `Please login with correct credentials ` })
+            
+            return res.status(400).json({ success, error: `Please login with correct credentials ` })
         }
         let passwordCompare = bcrypt.compareSync(password, user.password)
         if (!passwordCompare) {
-            return res.status(400).json({ error: `Please login with correct credentials` })
+         
+            return res.status(400).json({ success, error: `Please login with correct credentials` })
         }
 
         // Using JWT token and JWT_secret  
@@ -95,8 +100,8 @@ router.post('/login', [
         }
         const authToken = jwt.sign(data, JWt_secret)
         // console.log(authToken)
-
-        res.json({ authToken })
+        success= true
+        res.json({success, authToken })
     } catch (error) {
         console.log("here is the error ", error.message)
         res.status(500).send("Internal Server error ")

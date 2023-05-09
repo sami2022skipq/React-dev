@@ -6,29 +6,29 @@ import AddNote from './AddNote';
 const Notes = () => {
     const context = useContext(noteContext)
     const { notes, getNotes, editNote } = context
-    const [note, setNote]= useState({id : '',etitle:"",ediscription:"", etag : ""})
+    const [note, setNote] = useState({ id: '', etitle: "", ediscription: "", etag: "" })
 
 
     useEffect(() => {
         getNotes()
         // eslint-disable-next-line
     }, [])
-    const updateNote = (currentNote ) => {
+    const updateNote = (currentNote) => {
         ref.current.click()
-        setNote({ id: currentNote._id  ,etitle: currentNote.title, ediscription: currentNote.discription, etag: currentNote.tag })
+        setNote({ id: currentNote._id, etitle: currentNote.title, ediscription: currentNote.discription, etag: currentNote.tag })
 
     }
     const ref = useRef(null)
     const refClose = useRef(null)
 
-    const handelClick=(e)=>{
-        console.log("Updateing the Note" , " Title " ,note)
-        editNote(note.id, note.etitle , note.ediscription, note.etag)
+    const handelClick = (e) => {
+        console.log("Updateing the Note", " Title ", note)
+        editNote(note.id, note.etitle, note.ediscription, note.etag)
         refClose.current.click()
     }
-    const onChange=(e)=>{
-        setNote({...note, [e.target.name]:e.target.value})
-        
+    const onChange = (e) => {
+        setNote({ ...note, [e.target.name]: e.target.value })
+
     }
     return (
         <>
@@ -49,22 +49,22 @@ const Notes = () => {
                             <form>
                                 <div className="mb-3">
                                     <label htmlFor="etitle" className="form-label">Title</label>
-                                    <input type="text" className="form-control" id="etitle"  value ={note.etitle} name="etitle" aria-describedby="emailHelp" onChange={onChange} />
+                                    <input type="text" className="form-control" id="etitle" value={note.etitle} name="etitle" aria-describedby="emailHelp" onChange={onChange} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="ediscription" className="form-label">Discription</label>
-                                    <input type="text" className="form-control" id="ediscription" name="ediscription" value ={note.ediscription} onChange={onChange} />
+                                    <input type="text" className="form-control" id="ediscription" name="ediscription" value={note.ediscription} onChange={onChange} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="etag" className="form-label">Tag</label>
-                                    <input type="text" className="form-control" id="etag" name="etag" value ={note.etag}  onChange={onChange} />
+                                    <input type="text" className="form-control" id="etag" name="etag" value={note.etag} onChange={onChange} />
                                 </div>
 
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button ref={refClose}type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button disabled={note.etitle.length < 5 || note.ediscription.length <5}type="button" className="btn btn-primary" onClick={handelClick}>Update Note</button>
+                            <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button disabled={note.etitle.length < 5 || note.ediscription.length < 5} type="button" className="btn btn-primary" onClick={handelClick}>Update Note</button>
                         </div>
                     </div>
                 </div>
@@ -72,6 +72,11 @@ const Notes = () => {
 
             <div className='row my-3'>
                 <h2>Your notes</h2>
+                <div className='container'>
+                    <h5>
+                        {notes.length <= 6 && 'No notes to be displayed <=6'}
+                    </h5>
+                </div>
                 {notes.map((note) => {
                     return <NoteItem key={note._id} note={note} updateNote={updateNote} />
                 })}
