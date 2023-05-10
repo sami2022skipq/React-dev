@@ -38,18 +38,17 @@ const SignUp = () => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                    <input type="email" className="form-control" id="email" aria-describedby="emailHelp" required onChange={onChange}  name="email" value={credentials.email} />
+                    <input type="email" className="form-control" id="email" aria-describedby="emailHelp" required onChange={onChange} name="email" value={credentials.email} />
                     <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="password"  name="password" required onChange={onChange} value={credentials.password} />
+                    <input type="password" className="form-control" id="password" name="password" required onChange={onChange} value={credentials.password} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="cpassword" className="form-label">Confirm Password</label>
-                    <input type="password" className="form-control" id="cpassword"  required onChange={onChange} />
+                    <input type="password" className="form-control" id="cpassword" required onChange={onChange} />
                 </div>
-
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         </div>
