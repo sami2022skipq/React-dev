@@ -9,20 +9,22 @@ const Notes = (props) => {
     const { notes, getNotes, editNote } = context
     const [note, setNote] = useState({ id: '', etitle: "", ediscription: "", etag: "" })
 
-
+    // only load user notes if user is logged in
     useEffect(() => {
-        if(localStorage.getItem('token')){
+        console.log('i fire once');
+        if (localStorage.getItem('token')) {
 
             getNotes()
         }
-        else   {
+        else {
             history("/login")
         }
         // eslint-disable-next-line
-        
+
 
     }, [])
-    const updateNote = (currentNote) => {  
+    // text to be updated in update form
+    const updateNote = (currentNote) => {
         ref.current.click()
         setNote({ id: currentNote._id, etitle: currentNote.title, ediscription: currentNote.discription, etag: currentNote.tag })
 
@@ -42,7 +44,6 @@ const Notes = (props) => {
     }
     return (
         <>
-
             <AddNote showAlert={props.showAlert} />
 
             <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -85,11 +86,11 @@ const Notes = (props) => {
                 <h2>Your notes</h2>
                 <div className='container'>
                     <h5>
-                        {notes.length <= 6 && 'No notes to be displayed <=6'}
+                        {notes.length === 0 && 'No notes to be displaye'}
                     </h5>
                 </div>
                 {notes.map((note) => {
-                    return <NoteItem  showAlert={props.showAlert} key={note._id} note={note} updateNote={updateNote} />
+                    return <NoteItem showAlert={props.showAlert} key={note._id} note={note} updateNote={updateNote} />
                 })}
 
 
