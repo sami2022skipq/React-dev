@@ -1,44 +1,25 @@
 import { Link, useLocation } from "react-router-dom";
-import React, { useEffect } from 'react';
-import { useState } from "react";
+import React, { useEffect , useContext} from 'react';
+import userContext from "../context/user/userContext";
 
 
 export default function Navbar() {
-    const [name, setName] = useState("")
-    const getUserData = async () => {
-        // TODO :API call
-        const response = await fetch(`http://localhost:5000/api/auth/getuser`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "auth-token": localStorage.getItem('token')
-            },
-        })
-        const json = await response.json()
-        console.log("userDetails is ", json)
-        setName(json.name)
+    const context = useContext(userContext)
+    const {user} = context
 
-    }
+    
     let location = useLocation()
     useEffect(() => {
 
     }, [location])
 
-    useEffect(() => {
-        console.log('i fire once twice');
-        if (localStorage.getItem('token')) {
-
-            getUserData()
-        }
-        // eslint-disable-next-line
-
-    },[])
+    
     return (
 
         <>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to="/">Navbar</Link>
+                    <Link className="navbar-brand" to="#">Navbar</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -56,8 +37,8 @@ export default function Navbar() {
                         <form className="d-flex" role="search">
                             {localStorage.getItem('token') ?
                                 <>
-                                    <h5>{name}</h5>
-                                    <Link className="btn btn-primary mx-1" to='/login' role="button" onClick={() => localStorage.setItem('token', "")}>Log Out</Link>
+                                    <h5>Name :{user.name}</h5>
+                                    <Link className="btn btn-primary mx-1" to='/login' role="button" onClick={() => {localStorage.setItem('token', "")}}>Log Out</Link>
                                 </>
                                 :
                                 <div >

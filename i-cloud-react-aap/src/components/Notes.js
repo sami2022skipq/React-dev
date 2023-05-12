@@ -19,10 +19,11 @@ const Notes = (props) => {
         else {
             history("/login")
         }
-        // eslint-disable-next-line
+        
 
 
-    }, [])
+    },[]) // eslint-disable-line react-hooks/exhaustive-deps
+    
     // text to be updated in update form
     const updateNote = (currentNote) => {
         ref.current.click()
