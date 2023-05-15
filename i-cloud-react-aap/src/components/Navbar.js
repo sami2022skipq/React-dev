@@ -5,7 +5,7 @@ import userContext from "../context/user/userContext";
 
 export default function Navbar() {
     const context = useContext(userContext)
-    const {user} = context
+    const {user, setUser} = context
 
     
     let location = useLocation()
@@ -38,7 +38,7 @@ export default function Navbar() {
                             {localStorage.getItem('token') ?
                                 <>
                                     <h5 className="mx-3 mt-2">Name : {user.name}</h5>
-                                    <Link className="btn btn-primary mx-1" to='/login' role="button" onClick={() => {localStorage.setItem('token', "")}}>Log Out</Link>
+                                    <Link className="btn btn-primary mx-1" to='/login' role="button" onClick={() => {localStorage.setItem('token', ""); setUser({name : "", email: "" })}}>Log Out</Link>
                                 </>
                                 :
                                 <div >

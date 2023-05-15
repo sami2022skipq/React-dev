@@ -30,10 +30,11 @@ function App() {
 
   return (
     <>
-      <NoteStatus>
+    {/* Note sta */}
+      <NoteStatus>  
         <UserState>
           <Router>
-            {/* wraapping UserState around Navbar to use context */}
+            {/* wraapping UserState around Home/Navbar to use user Deatail context */}
             <Navbar />
             <Alert alert={alert} />
             <div className='container'>
