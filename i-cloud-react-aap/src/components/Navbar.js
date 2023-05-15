@@ -37,7 +37,7 @@ export default function Navbar() {
                         <form className="d-flex" role="search">
                             {localStorage.getItem('token') ?
                                 <>
-                                    <h5>Name :{user.name}</h5>
+                                    <h5 className="mx-3 mt-2">Name : {user.name}</h5>
                                     <Link className="btn btn-primary mx-1" to='/login' role="button" onClick={() => {localStorage.setItem('token', "")}}>Log Out</Link>
                                 </>
                                 :
