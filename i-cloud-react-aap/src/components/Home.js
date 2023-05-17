@@ -11,10 +11,12 @@ export default function Home(props) {
         if (localStorage.getItem('token')) {
 
             getUserData()
+            
         }
        
 
-    },[]) //eslint-disable-line react-hooks/exhaustive-deps
+    },[])  // eslint-disable-line react-hooks/exhaustive-deps
+    
     return (
         <div className='my-3'>
 

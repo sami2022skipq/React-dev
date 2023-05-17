@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const Notes = (props) => {
     let history = useNavigate()
     const context = useContext(noteContext)
-    const { notes, getNotes, editNote } = context
+    const { notes, getNotes, editNote,getAllListings } = context
     const [note, setNote] = useState({ id: '',  esocietyName: "", etotalPrice: "", edownPayment: "",  elocation: "",  epaidInstallments: "",  eballoted: "",  ediscription: "",  eyearOfPurchase: ""  })
 
     // only load user notes if user is logged in
@@ -15,6 +15,7 @@ const Notes = (props) => {
         if (localStorage.getItem('token')) {
 
             getNotes()
+            getAllListings()
         }
         else {
             history("/login")

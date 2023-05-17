@@ -1,26 +1,24 @@
 import noteContext from '../context/notes/noteContext';
 import React, { useContext } from 'react';
-import NoteItem from './NoteItem';
+import AllListings from './AllListings';
+
 
 export default function About() {
 
     const context = useContext(noteContext)
-    const { notes } = context
+    const { allListings } = context
 
 
-    // useEffect(() => {
-    //     a.update();
-    //     // eslint-disable-next-line
-    // }, [])
+    
 
     return (
         
                 <div className='row my-3'>
-                    <h2>About Notes </h2>
+                    <h2>All Listings </h2>
         
-                    {notes.map((note) => (
+                    {allListings.map((note) => (
 
-                         <NoteItem key={note._id} note={note}/>
+                         <AllListings key={note._id} note={note}/>
                     ))
                     }
                     
@@ -28,4 +26,4 @@ export default function About() {
 
 
             )}
-        
+            

@@ -6,7 +6,7 @@ const fetchuser = require('../middleware/fetchuser')
 const Note = require('../models/Note')
 
 
-// ROUTE 1 : get all notes using GET "/api/notes/fetchallnotes". Login required
+// ROUTE 1 : get user  notes using GET "/api/notes/fetchallnotes". Login required
 
 router.get('/fetchallnotes', fetchuser, async (req, res) => {
 
@@ -151,7 +151,7 @@ router.delete('/deletenote/:id', fetchuser, async (req, res) => {
     }
 })
 
-// fetch all public notes
+// fetch all public listings
 router.get('/fetchallnotesPublic', fetchuser, async (req, res) => {
 
     try {

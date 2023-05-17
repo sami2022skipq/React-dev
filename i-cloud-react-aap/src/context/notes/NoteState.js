@@ -6,6 +6,7 @@ const NoteStatus = (props) => {
   const host = "http://localhost:5000"
   const s1 = []
   const [notes, setNotes] = useState(s1)
+  const [allListings, setAllListings] = useState(s1)
 
   //   ******************************               Get all Note           ********************************************* 
   const getNotes = async () => {
@@ -108,10 +109,27 @@ const NoteStatus = (props) => {
     setNotes(newNotes)
 
   }
+
+
+  //   ******************************               Get All Listing       ********************************************* 
+  const getAllListings = async () => {
+    // TODO :API call
+    const response = await fetch(`${host}/api/notes/fetchallnotesPublic/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem('token')
+      },
+    })
+    const json = await response.json()
+    console.log("from All Listing NoteStatus", json)
+    setAllListings(json)
+
+  }
   // Passing Value to Context Provider 
   return (
 
-    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes }}>
+    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes, getAllListings, allListings, setAllListings }}>
       {props.children}
     </NoteContext.Provider>
   )

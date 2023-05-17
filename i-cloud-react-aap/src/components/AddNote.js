@@ -9,7 +9,6 @@ const AddNotes = (props) => {
     const [note, setNote] = useState({ societyName: "", totalPrice: "", downPayment: "",  location: "",  paidInstallments: "",  balloted: "",  discription: "",  yearOfPurchase: "" })
     const handelClick = (e) => {
         e.preventDefault()
-        // work here
         addNote(note.societyName, note.totalPrice,note.downPayment,  note.location,  note.paidInstallments,  note.balloted,  note.discription,  note.yearOfPurchase)
         setNote({ societyName: "", totalPrice: "", downPayment: "",  location: "",  paidInstallments: "",  balloted: "",  discription: "",  yearOfPurchase: "" })
         props.showAlert("Note Successfully added", "success")
@@ -55,7 +54,7 @@ const AddNotes = (props) => {
                     <input type="text" className="form-control" id="location" name="location" value={note.location} onChange={onChange} />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="paidInstallments" className="form-label">PaidInstallments</label>
+                    <label htmlFor="paidInstallments" className="form-label">Paid Installments</label>
                     <input type="text" className="form-control" id="paidInstallments" name="paidInstallments" value={note.paidInstallments} onChange={onChange} />
                 </div>
                 <div className="mb-3">
