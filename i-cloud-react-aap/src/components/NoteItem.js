@@ -9,8 +9,31 @@ const NoteItem = (props) => {
         <div className="col-md-3">
             <div className="card   my-3" >
                 <div className="card-body">
-                    <h5 className="card-title">{note.title}</h5>
-                    <p className="card-text">{note.discription}</p>
+                    {/* 
+           1 societyName,
+           2 totalPrice,
+           3 downPayment,
+           4 location,
+           5 paidInstallments,
+           6 balloted,
+           7 discription,
+           8 yearOfPurchase
+            
+            */}
+                    <h6 className="card-title"> Society Name : {note.societyName}</h6>
+                    <p className="card-text"> Total Price :{note.totalPrice}</p>
+                    <p className="card-text">Down Payment : {note.downPayment}</p>
+                    <p className="card-text">Location: {note.location}</p>
+                    <p className="card-text">Paid Installments : {note.paidInstallments}</p>
+                    <p className="card-text">Balloted : {note.balloted}</p>
+                    <p className="card-text">Discription : {note.discription}</p>
+                    <p className="card-text">Year of Purchase : {note.yearOfPurchase}</p>
+
+
+
+
+
+
 
                     <i className="fa-solid fa-trash-can mx-2" onClick={() => {
                         deleteNote(note._id)

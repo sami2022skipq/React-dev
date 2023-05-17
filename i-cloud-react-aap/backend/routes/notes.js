@@ -26,8 +26,8 @@ router.get('/fetchallnotes', fetchuser, async (req, res) => {
 router.post('/addnote', fetchuser, [
 
     // Basic critaria for creating a new user
-    body('title', "Enter a valid title").isLength({ min: 3 }),
-    body('discription', "Discription must be atleast five characters ").isLength({ min: 5 }),
+    // body('title', "Enter a valid title").isLength({ min: 3 }),
+    // body('discription', "Discription must be atleast five characters ").isLength({ min: 5 }),
 
 ], async (req, res) => {
 
@@ -38,9 +38,26 @@ router.post('/addnote', fetchuser, [
         if (!result.isEmpty()) {
             return res.status(400).json({ errors: result.array() });
         }
-        const { title, discription, tag } = req.body;
+        const { societyName,
+            totalPrice,
+            downPayment,
+            location,
+            paidInstallments,
+            balloted,
+            discription,
+            yearOfPurchase } = req.body;
+
         const note = new Note({
-            title, discription, tag, user: req.user.id
+
+            societyName,
+            totalPrice,
+            downPayment,
+            location,
+            paidInstallments,
+            balloted,
+            discription,
+            yearOfPurchase,
+            user: req.user.id
 
         })
         const savedNote = await note.save()
@@ -59,7 +76,15 @@ router.post('/addnote', fetchuser, [
 
 
 router.put('/updatenote/:id', fetchuser, async (req, res) => {
-    const { title, discription, tag } = req.body;
+    const {
+        societyName,
+        totalPrice,
+        downPayment,
+        location,
+        paidInstallments,
+        balloted,
+        discription,
+        yearOfPurchase } = req.body;
 
 
 
@@ -69,9 +94,14 @@ router.put('/updatenote/:id', fetchuser, async (req, res) => {
 
         const newNote = {}
 
-        if (title) { newNote.title = title }
+        if (societyName) { newNote.societyName = societyName }
+        if (totalPrice) { newNote.totalPrice = totalPrice }
+        if (downPayment) { newNote.downPayment = downPayment }
+        if (location) { newNote.location = location }
+        if (paidInstallments) { newNote.paidInstallments = paidInstallments }
+        if (balloted) { newNote.balloted = balloted }
         if (discription) { newNote.discription = discription }
-        if (tag) { newNote.tag = tag }
+        if (yearOfPurchase) { newNote.yearOfPurchase = yearOfPurchase }
 
 
         // Find the note to be updated and update it
@@ -117,6 +147,21 @@ router.delete('/deletenote/:id', fetchuser, async (req, res) => {
         console.log("here is the error ", error.message)
         res.status(500).send("Internal Server error ")
 
+
+    }
+})
+
+// fetch all public notes
+router.get('/fetchallnotesPublic', fetchuser, async (req, res) => {
+
+    try {
+        const notes = await Note.find(this.all)
+        res.json(notes)
+
+    } catch (error) {
+
+        console.log("here is the error ", error.message)
+        res.status(500).send("Internal Server error ")
 
     }
 })

@@ -7,7 +7,7 @@ const Notes = (props) => {
     let history = useNavigate()
     const context = useContext(noteContext)
     const { notes, getNotes, editNote } = context
-    const [note, setNote] = useState({ id: '', etitle: "", ediscription: "", etag: "" })
+    const [note, setNote] = useState({ id: '',  esocietyName: "", etotalPrice: "", edownPayment: "",  elocation: "",  epaidInstallments: "",  eballoted: "",  ediscription: "",  eyearOfPurchase: ""  })
 
     // only load user notes if user is logged in
     useEffect(() => {
@@ -26,8 +26,9 @@ const Notes = (props) => {
     
     // text to be updated in update form
     const updateNote = (currentNote) => {
+        const {_id,societyName, totalPrice, downPayment,  location,  paidInstallments,  balloted,  discription,  yearOfPurchase} = currentNote
         ref.current.click()
-        setNote({ id: currentNote._id, etitle: currentNote.title, ediscription: currentNote.discription, etag: currentNote.tag })
+        setNote({ id:_id, esocietyName: societyName, etotalPrice: totalPrice, edownPayment: downPayment,elocation:  location,epaidInstallments: paidInstallments, eballoted: balloted, ediscription: discription, eyearOfPurchase: yearOfPurchase })
 
     }
     const ref = useRef(null)
@@ -35,7 +36,7 @@ const Notes = (props) => {
 
     const handelClick = (e) => {
         console.log("Updateing the Note", " Title ", note)
-        editNote(note.id, note.etitle, note.ediscription, note.etag)
+        editNote(note.id, note.esocietyName, note.etotalPrice, note.edownPayment,  note.elocation,  note.epaidInstallments,  note.eballoted,  note.ediscription,  note.eyearOfPurchase)
         refClose.current.click()
         props.showAlert("Note has been updated", "success")
     }
@@ -60,34 +61,65 @@ const Notes = (props) => {
                         </div>
                         <div className="modal-body">
                             <form>
+                                 {/* 
+           1 societyName,
+           2 totalPrice,
+           3 downPayment,
+           4 location,
+           5 paidInstallments,
+           6 balloted,
+           7 discription,
+           8 yearOfPurchase
+            
+            */}
                                 <div className="mb-3">
-                                    <label htmlFor="etitle" className="form-label">Title</label>
-                                    <input type="text" className="form-control" id="etitle" value={note.etitle} name="etitle" aria-describedby="emailHelp" onChange={onChange} />
+                                    <label htmlFor="esocietyName" className="form-label">Society Name</label>
+                                    <input type="text" className="form-control" id="esocietyName" value={note.esocietyName} name="esocietyName" aria-describedby="emailHelp" onChange={onChange} />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="etotalPrice" className="form-label">Total Price</label>
+                                    <input type="text" className="form-control" id="etotalPrice" name="etotalPrice" value={note.etotalPrice} onChange={onChange} />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="edownPayment" className="form-label">Down Payment</label>
+                                    <input type="text" className="form-control" id="edownPayment" name="edownPayment" value={note.edownPayment} onChange={onChange} />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="elocation" className="form-label">Location</label>
+                                    <input type="text" className="form-control" id="elocation" name="" value={note.elocation} onChange={onChange} />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="epaidInstallments" className="form-label">Paid Installments</label>
+                                    <input type="text" className="form-control" id="epaidInstallments" name="epaidInstallments" value={note.epaidInstallments} onChange={onChange} />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="eballoted" className="form-label">Balloted</label>
+                                    <input type="text" className="form-control" id="eballoted" name="eballoted" value={note.eballoted} onChange={onChange} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="ediscription" className="form-label">Discription</label>
                                     <input type="text" className="form-control" id="ediscription" name="ediscription" value={note.ediscription} onChange={onChange} />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="etag" className="form-label">Tag</label>
-                                    <input type="text" className="form-control" id="etag" name="etag" value={note.etag} onChange={onChange} />
+                                    <label htmlFor="eyearOfPurchase" className="form-label">Year Of Purchase</label>
+                                    <input type="text" className="form-control" id="eyearOfPurchase" name="eyearOfPurchase" value={note.eyearOfPurchase} onChange={onChange} />
                                 </div>
 
                             </form>
                         </div>
                         <div className="modal-footer">
                             <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button disabled={note.etitle.length < 5 || note.ediscription.length < 5} type="button" className="btn btn-primary" onClick={handelClick}>Update Note</button>
+                            <button disabled={note.esocietyName.length < 5 || note.ediscription.length < 5} type="button" className="btn btn-primary" onClick={handelClick}>Update Note</button>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div className='row my-3'>
-                <h2>Your notes</h2>
+                <h2>Your Listings</h2>
                 <div className='container'>
                     <h5>
-                        {notes.length === 0 && 'No notes to be displaye'}
+                        {notes.length === 0 && 'No listing to be displayed'}
                     </h5>
                 </div>
                 {notes.map((note) => {
