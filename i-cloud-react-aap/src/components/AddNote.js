@@ -6,11 +6,11 @@ const AddNotes = (props) => {
     const { addNote } = context
 
 
-    const [note, setNote] = useState({ societyName: "", totalPrice: "", downPayment: "",  location: "",  paidInstallments: "",  balloted: "",  discription: "",  yearOfPurchase: "" })
+    const [note, setNote] = useState({ societyName: "", totalPrice: "", downPayment: "", location: "", paidInstallments: "", balloted: "", discription: "", yearOfPurchase: "" })
     const handelClick = (e) => {
         e.preventDefault()
-        addNote(note.societyName, note.totalPrice,note.downPayment,  note.location,  note.paidInstallments,  note.balloted,  note.discription,  note.yearOfPurchase)
-        setNote({ societyName: "", totalPrice: "", downPayment: "",  location: "",  paidInstallments: "",  balloted: "",  discription: "",  yearOfPurchase: "" })
+        addNote(note.societyName, note.totalPrice, note.downPayment, note.location, note.paidInstallments, note.balloted, note.discription, note.yearOfPurchase)
+        setNote({ societyName: "", totalPrice: "", downPayment: "", location: "", paidInstallments: "", balloted: "", discription: "", yearOfPurchase: "" })
         props.showAlert("Note Successfully added", "success")
 
     }
@@ -57,10 +57,24 @@ const AddNotes = (props) => {
                     <label htmlFor="paidInstallments" className="form-label">Paid Installments</label>
                     <input type="text" className="form-control" id="paidInstallments" name="paidInstallments" value={note.paidInstallments} onChange={onChange} />
                 </div>
-                <div className="mb-3">
+                {/* <div className="mb-3">
                     <label htmlFor="balloted" className="form-label">Balloted</label>
-                    <input type="boolean" className="form-control" id="balloted" name="balloted" value={note.balloted} onChange={onChange} />
+                    <input type="text" className="form-control" id="balloted" name="balloted" value={note.balloted} onChange={onChange} />
+                </div> */}
+                <div className="input-group mb-3">
+                    <label className="input-group-text" htmlFor="balloted">Balloted</label>
+                    <select className="form-select" id="balloted" name="balloted" onChange={onChange}>
+                        <option value="no">No</option>
+                        <option value="yes">Yes</option>
+                    </select>
                 </div>
+                {
+                    note.balloted === "yes" &&
+                        <div className="mb-3">
+                            <label htmlFor="PlotNumber" className="form-label">Plot Number</label>
+                            <input type="text" className="form-control" id="PlotNumber" name="PlotNumber"  onChange={onChange} />
+                        </div>
+                }
                 <div className="mb-3">
                     <label htmlFor="discription" className="form-label">Discription</label>
                     <input type="text" className="form-control" id="discription" name="discription" value={note.discription} onChange={onChange} />
@@ -70,7 +84,7 @@ const AddNotes = (props) => {
                     <input type="text" className="form-control" id="yearOfPurchase" name="yearOfPurchase" value={note.yearOfPurchase} onChange={onChange} />
                 </div>
 
-                
+
                 {/* 
                 Disabling : Note submit button if lenghth of societyname and discription is less than 5 characters
                 */}
