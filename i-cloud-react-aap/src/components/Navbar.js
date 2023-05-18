@@ -1,19 +1,19 @@
 import { Link, useLocation } from "react-router-dom";
-import React, { useEffect , useContext} from 'react';
+import React, { useEffect, useContext } from 'react';
 import userContext from "../context/user/userContext";
 
 
 export default function Navbar() {
     const context = useContext(userContext)
-    const {user, setUser} = context
+    const { user, setUser } = context
 
-    
+
     let location = useLocation()
     useEffect(() => {
 
     }, [location])
 
-    
+
     return (
 
         <>
@@ -38,12 +38,15 @@ export default function Navbar() {
                             {localStorage.getItem('token') ?
                                 <>
                                     <h5 className="mx-3 mt-2">{user.name}</h5>
-                                    <Link className="btn btn-primary mx-1" to='/login' role="button" onClick={() => {localStorage.setItem('token', ""); setUser({name : "", email: "" })}}>Log Out</Link>
+                                    <Link className="btn btn-primary mx-1" to='/login' role="button" onClick={() => { localStorage.setItem('token', ""); setUser({ name: "", email: "" }) }}>Log Out</Link>
                                 </>
                                 :
+                                // showing Login and Sigup button based on pathname
                                 <div >
+                                    {location.pathname === "/signup" ?
                                     <Link className="btn btn-primary mx-1" to='/login' role="button">Login</Link>
-                                    <Link className="btn btn-primary mx-1" to='/signup' role="button">Sign Up</Link>
+                                    :
+                                    <Link className="btn btn-primary mx-1" to='/signup' role="button">Sign Up</Link>}
                                 </div>
                             }
 

@@ -50,7 +50,7 @@ const Login = (props) => {
                     <input type="password" className="form-control" id="password" name="password" value={credentials.password} onChange={onChange} required />
                 </div>
 
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Login</button>
             </form>
         </div>
     )

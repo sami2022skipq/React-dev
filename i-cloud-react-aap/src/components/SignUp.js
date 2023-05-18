@@ -34,7 +34,7 @@ const SignUp = (props) => {
         <div>
             <div className=" my-2">
                 <h3>
-                    Please SignUp to use I-Notebook
+                    Please SignUp to List your property
                 </h3>
             </div>
             <form onSubmit={handelsubmit}>
@@ -55,7 +55,7 @@ const SignUp = (props) => {
                     <label htmlFor="cpassword" className="form-label">Confirm Password</label>
                     <input type="password" className="form-control" id="cpassword" required onChange={onChange} />
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Sign Up</button>
             </form>
         </div>
     )
