@@ -156,7 +156,9 @@ router.get('/fetchallnotesPublic', fetchuser, async (req, res) => {
 
     try {
         const notes = await Note.find(this.all)
-        res.json(notes)
+        // filtering adds that are not from the current user logged in 
+        const filter = notes.filter((note)=> note.user.toString() !== req.user.id )
+        res.json(filter)
 
     } catch (error) {
 

@@ -30,14 +30,14 @@ export default function Navbar() {
                                 <Link className={`nav-link ${location.pathname === "/" ? "active" : ""}`} aria-current="page" to="/">Home</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} aria-current="page" to="/about">About</Link>
+                                <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} aria-current="page" to="/about">All Listings</Link>
                             </li>
                         </ul>}
                         {/* Login/ Signup if not logged in else Logout */}
                         <form className="d-flex" role="search">
                             {localStorage.getItem('token') ?
                                 <>
-                                    <h5 className="mx-3 mt-2">Name : {user.name}</h5>
+                                    <h5 className="mx-3 mt-2">{user.name}</h5>
                                     <Link className="btn btn-primary mx-1" to='/login' role="button" onClick={() => {localStorage.setItem('token', ""); setUser({name : "", email: "" })}}>Log Out</Link>
                                 </>
                                 :
