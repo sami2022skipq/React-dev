@@ -40,23 +40,30 @@ router.post('/addnote', fetchuser, [
         }
         const { societyName,
             totalPrice,
+            area,
             downPayment,
             location,
             paidInstallments,
             balloted,
+            plotNumber,
             discription,
-            yearOfPurchase } = req.body;
+            yearOfPurchase,
+            phoneNumber,
+        } = req.body;
 
         const note = new Note({
 
             societyName,
             totalPrice,
+            area,
             downPayment,
             location,
             paidInstallments,
             balloted,
+            plotNumber,
             discription,
             yearOfPurchase,
+            phoneNumber,
             user: req.user.id
 
         })
@@ -78,11 +85,13 @@ router.post('/addnote', fetchuser, [
 router.put('/updatenote/:id', fetchuser, async (req, res) => {
     const {
         societyName,
+        area,
         totalPrice,
         downPayment,
         location,
         paidInstallments,
         balloted,
+        plotNumber,
         discription,
         yearOfPurchase } = req.body;
 
@@ -95,11 +104,13 @@ router.put('/updatenote/:id', fetchuser, async (req, res) => {
         const newNote = {}
 
         if (societyName) { newNote.societyName = societyName }
+        if (area) { newNote.area = area }
         if (totalPrice) { newNote.totalPrice = totalPrice }
         if (downPayment) { newNote.downPayment = downPayment }
         if (location) { newNote.location = location }
         if (paidInstallments) { newNote.paidInstallments = paidInstallments }
         if (balloted) { newNote.balloted = balloted }
+        if (plotNumber) { newNote.plotNumber = plotNumber }
         if (discription) { newNote.discription = discription }
         if (yearOfPurchase) { newNote.yearOfPurchase = yearOfPurchase }
 
@@ -157,7 +168,7 @@ router.get('/fetchallnotesPublic', fetchuser, async (req, res) => {
     try {
         const notes = await Note.find(this.all)
         // filtering adds that are not from the current user logged in 
-        const filter = notes.filter((note)=> note.user.toString() !== req.user.id )
+        const filter = notes.filter((note) => note.user.toString() !== req.user.id)
         res.json(filter)
 
     } catch (error) {

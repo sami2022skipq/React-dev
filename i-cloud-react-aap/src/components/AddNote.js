@@ -1,16 +1,18 @@
 import React, { useContext, useState } from "react";
 import noteContext from "../context/notes/noteContext";
 
+
 const AddNotes = (props) => {
     const context = useContext(noteContext)
     const { addNote } = context
 
 
-    const [note, setNote] = useState({ societyName: "", totalPrice: "", downPayment: "", location: "", paidInstallments: "", balloted: "", discription: "", yearOfPurchase: "" })
+    const [note, setNote] = useState({ societyName: "",  area :"", totalPrice: "", downPayment: "", location: "", paidInstallments: "", balloted: "", plotNumber: "", discription: "", yearOfPurchase: "" , phoneNumber: 9891513 })
     const handelClick = (e) => {
         e.preventDefault()
-        addNote(note.societyName, note.totalPrice, note.downPayment, note.location, note.paidInstallments, note.balloted, note.discription, note.yearOfPurchase)
-        setNote({ societyName: "", totalPrice: "", downPayment: "", location: "", paidInstallments: "", balloted: "", discription: "", yearOfPurchase: "" })
+        addNote(note.societyName, note.area, note.totalPrice, note.downPayment, note.location, note.paidInstallments, note.balloted, note.plotNumber, note.discription, note.yearOfPurchase, note.phoneNumber)
+        setNote({ societyName: "", area :"", totalPrice: "", downPayment: "", location: "", paidInstallments: "", balloted: "",plotNumber: "", discription: "", yearOfPurchase: "" })
+        
         props.showAlert("Note Successfully added", "success")
 
     }
@@ -42,6 +44,10 @@ const AddNotes = (props) => {
                     <input type="text" className="form-control" id="societyName" name="societyName" aria-describedby="emailHelp" value={note.societyName} onChange={onChange} />
                 </div>
                 <div className="mb-3">
+                    <label htmlFor="area" className="form-label">Arae</label>
+                    <input type="text" className="form-control" id="area" name="area" aria-describedby="emailHelp" value={note.area} onChange={onChange} />
+                </div>
+                <div className="mb-3">
                     <label htmlFor="totalPrice" className="form-label">Total Price</label>
                     <input type="text" className="form-control" id="discription" name="totalPrice" value={note.totalPrice} onChange={onChange} />
                 </div>
@@ -64,6 +70,8 @@ const AddNotes = (props) => {
                 <div className="input-group mb-3">
                     <label className="input-group-text" htmlFor="balloted">Balloted</label>
                     <select className="form-select" id="balloted" name="balloted" onChange={onChange}>
+
+                        <option value="">Select</option>
                         <option value="no">No</option>
                         <option value="yes">Yes</option>
                     </select>
@@ -71,8 +79,8 @@ const AddNotes = (props) => {
                 {
                     note.balloted === "yes" &&
                         <div className="mb-3">
-                            <label htmlFor="PlotNumber" className="form-label">Plot Number</label>
-                            <input type="text" className="form-control" id="PlotNumber" name="PlotNumber"  onChange={onChange} />
+                            <label htmlFor="plotNumber" className="form-label">Plot Number</label>
+                            <input type="text" className="form-control" id="plotNumber" name="plotNumber" value={note.plotNumber} onChange={onChange} />
                         </div>
                 }
                 <div className="mb-3">

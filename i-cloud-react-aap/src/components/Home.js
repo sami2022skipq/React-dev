@@ -4,13 +4,17 @@ import { useContext , useEffect} from "react";
 
 export default function Home(props) {
     
+    
     const context = useContext(userContext)
-    const { getUserData} = context
+    const { getUserData, user} = context
+    
+    const {email, phoneNumber } = user
     useEffect(() => {
         console.log('i fire once Home user data');
         if (localStorage.getItem('token')) {
 
             getUserData()
+       
             
         }
        
@@ -19,7 +23,7 @@ export default function Home(props) {
     
     return (
         <div className='my-3'>
-
+            {     console.log("from home context",email, "and" ,phoneNumber)}
             <div className="">
                 <Notes showAlert={props.showAlert} />
 

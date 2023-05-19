@@ -40,6 +40,7 @@ router.post('/createUser', [
             name: req.body.name,
             email: req.body.email,
             password: secPass,
+            phoneNumber: req.body.phoneNumber
         })
         //Enabling JWT auth token 
         const data = {

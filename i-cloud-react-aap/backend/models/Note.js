@@ -10,10 +10,13 @@ const NotesSchema = new Schema({
     type: String,
     required: true
   },
+  area: {
+    type: Number,
+    required :true
+},
   totalPrice: {
     type: Number,
-    required: true
-
+    required: true,
   },
   downPayment: {
     type: Number,
@@ -27,7 +30,11 @@ const NotesSchema = new Schema({
     type: Number
   },
   balloted: {
-    type: Boolean
+    type: Boolean,
+    required: true
+  },
+  plotNumber: {
+    type: String,
   },
 
   discription: {
@@ -37,6 +44,10 @@ const NotesSchema = new Schema({
   yearOfPurchase: {
     type: Number,
     required: true
+  },
+  
+  phoneNumber: {
+    type: Number
   },
 
   date: {

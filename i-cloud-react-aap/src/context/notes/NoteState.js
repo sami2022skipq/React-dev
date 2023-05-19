@@ -23,9 +23,9 @@ const NoteStatus = (props) => {
     setNotes(json)
 
   }
-
+  // phoneNumber
   //   ********************************               Add a Note         *******************************************
-  const addNote = async (societyName, totalPrice, downPayment, location, paidInstallments, balloted, discription, yearOfPurchase) => {
+  const addNote = async (societyName, area,  totalPrice, downPayment, location, paidInstallments, balloted, plotNumber,  discription, yearOfPurchase,phoneNumber) => {
     // TODO :API call
     const response = await fetch(`${host}/api/notes/addnote`, {
       method: "POST",
@@ -33,8 +33,9 @@ const NoteStatus = (props) => {
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem('token')
       },
-      body: JSON.stringify({ societyName, totalPrice, downPayment, location, paidInstallments, balloted, discription, yearOfPurchase }),
+      body: JSON.stringify({ societyName,area,  totalPrice, downPayment, location, paidInstallments, balloted, plotNumber, discription, yearOfPurchase, phoneNumber }),
     })
+  
     const note = await response.json()
     console.log(note)
     // const note = {
@@ -72,7 +73,7 @@ const NoteStatus = (props) => {
 
   }
   //  ******************************                     Edit a Note            ********************************************************
-  const editNote = async (id, societyName, totalPrice, downPayment, location, paidInstallments, balloted, discription, yearOfPurchase) => {
+  const editNote = async (id, societyName, area, totalPrice, downPayment, location, paidInstallments, balloted, plotNumber ,discription, yearOfPurchase) => {
 
     // API call
     const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
@@ -82,7 +83,7 @@ const NoteStatus = (props) => {
         "auth-token": localStorage.getItem('token')
 
       },
-      body: JSON.stringify({ societyName, totalPrice, downPayment, location, paidInstallments, balloted, discription, yearOfPurchase }),
+      body: JSON.stringify({ societyName,area, totalPrice, downPayment, location, paidInstallments, balloted,  plotNumber, discription, yearOfPurchase }),
     })
     const json = await response.json();
     console.log(json)
@@ -94,11 +95,13 @@ const NoteStatus = (props) => {
       let element = newNotes[index];
       if (element._id === id) {
         newNotes[index].societyName = societyName
+        newNotes[index].area = area
         newNotes[index].totalPrice = totalPrice
         newNotes[index].downPayment = downPayment
         newNotes[index].location = location
         newNotes[index].paidInstallments = paidInstallments
         newNotes[index].balloted = balloted
+        newNotes[index].plotNumber = plotNumber
         newNotes[index].discription = discription
         newNotes[index].yearOfPurchase = yearOfPurchase
         break;

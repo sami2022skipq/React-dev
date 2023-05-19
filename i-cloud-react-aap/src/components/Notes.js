@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 const Notes = (props) => {
     let history = useNavigate()
     const context = useContext(noteContext)
-    const { notes, getNotes, editNote,getAllListings } = context
-    const [note, setNote] = useState({ id: '',  esocietyName: "", etotalPrice: "", edownPayment: "",  elocation: "",  epaidInstallments: "",  eballoted: "",  ediscription: "",  eyearOfPurchase: ""  })
+    const { notes, getNotes, editNote, getAllListings } = context
+    const [note, setNote] = useState({ id: '', esocietyName: "", earea: "", etotalPrice: "", edownPayment: "", elocation: "", epaidInstallments: "", eballoted: "", eplotNumber: "", ediscription: "", eyearOfPurchase: "" })
 
     // only load user notes if user is logged in
     useEffect(() => {
@@ -20,16 +20,16 @@ const Notes = (props) => {
         else {
             history("/login")
         }
-        
 
 
-    },[]) // eslint-disable-line react-hooks/exhaustive-deps
-    
+
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
     // text to be updated in update form
     const updateNote = (currentNote) => {
-        const {_id,societyName, totalPrice, downPayment,  location,  paidInstallments,  balloted,  discription,  yearOfPurchase} = currentNote
+        const { _id, societyName, area, totalPrice, downPayment, location, paidInstallments, balloted, plotNumber, discription, yearOfPurchase } = currentNote
         ref.current.click()
-        setNote({ id:_id, esocietyName: societyName, etotalPrice: totalPrice, edownPayment: downPayment,elocation:  location,epaidInstallments: paidInstallments, eballoted: balloted, ediscription: discription, eyearOfPurchase: yearOfPurchase })
+        setNote({ id: _id, esocietyName: societyName, earea: area, etotalPrice: totalPrice, edownPayment: downPayment, elocation: location, epaidInstallments: paidInstallments, eballoted: balloted, eplotNumber: plotNumber, ediscription: discription, eyearOfPurchase: yearOfPurchase })
 
     }
     const ref = useRef(null)
@@ -37,7 +37,7 @@ const Notes = (props) => {
 
     const handelClick = (e) => {
         console.log("Updateing the Note", " Title ", note)
-        editNote(note.id, note.esocietyName, note.etotalPrice, note.edownPayment,  note.elocation,  note.epaidInstallments,  note.eballoted,  note.ediscription,  note.eyearOfPurchase)
+        editNote(note.id, note.esocietyName, note.earea, note.etotalPrice, note.edownPayment, note.elocation, note.epaidInstallments, note.eballoted, note.eplotNumber, note.ediscription, note.eyearOfPurchase)
         refClose.current.click()
         props.showAlert("Note has been updated", "success")
     }
@@ -57,12 +57,12 @@ const Notes = (props) => {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="exampleModalLabel">Edit Note</h1>
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">Edit your listing</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                             <form>
-                                 {/* 
+                                {/* 
            1 societyName,
            2 totalPrice,
            3 downPayment,
@@ -76,6 +76,10 @@ const Notes = (props) => {
                                 <div className="mb-3">
                                     <label htmlFor="esocietyName" className="form-label">Society Name</label>
                                     <input type="text" className="form-control" id="esocietyName" value={note.esocietyName} name="esocietyName" aria-describedby="emailHelp" onChange={onChange} />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="earea" className="form-label">Area</label>
+                                    <input type="text" className="form-control" id="earea" name="earea" value={note.earea} onChange={onChange} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="etotalPrice" className="form-label">Total Price</label>
@@ -93,10 +97,24 @@ const Notes = (props) => {
                                     <label htmlFor="epaidInstallments" className="form-label">Paid Installments</label>
                                     <input type="text" className="form-control" id="epaidInstallments" name="epaidInstallments" value={note.epaidInstallments} onChange={onChange} />
                                 </div>
-                                <div className="mb-3">
+                                {/* <div className="mb-3">
                                     <label htmlFor="eballoted" className="form-label">Balloted</label>
-                                    <input type="text" className="form-control" id="eballoted" name="eballoted" value={note.eballoted} onChange={onChange} />
+                                    <input type="text" className="form-control" id="eballoted" name="eballoted" value={note.eballoted} onChange={onChange} /> 
+                                 </div> */}
+                                <div className="input-group mb-3">
+                                    <label className="input-group-text" htmlFor="eballoted">Balloted</label>
+                                    <select className="form-select" id="eballoted" name="eballoted" onChange={onChange}>
+                                        <option value={note.eballoted} >{String(note.eballoted)}</option>
+                                        <option value={!note.eballoted}>{String(!note.eballoted)}</option>
+                                    </select>
                                 </div>
+                                {
+                                    note.eballoted  &&
+                                    <div className="mb-3">
+                                        <label htmlFor="eplotNumber" className="form-label">Plot Number</label>
+                                        <input type="text" className="form-control" id="eplotNumber" name="eplotNumber" value={note.eplotNumber} onChange={onChange} />
+                                    </div>
+                                }
                                 <div className="mb-3">
                                     <label htmlFor="ediscription" className="form-label">Discription</label>
                                     <input type="text" className="form-control" id="ediscription" name="ediscription" value={note.ediscription} onChange={onChange} />
@@ -110,11 +128,11 @@ const Notes = (props) => {
                         </div>
                         <div className="modal-footer">
                             <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button disabled={note.esocietyName.length < 5 || note.ediscription.length < 5} type="button" className="btn btn-primary" onClick={handelClick}>Update Note</button>
+                            <button disabled={note.esocietyName.length < 5 || note.ediscription.length < 5} type="button" className="btn btn-primary" onClick={handelClick}>Update Listing</button>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div >
+            </div >
 
             <div className='row my-3'>
                 <h2>Your Listings</h2>

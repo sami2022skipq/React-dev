@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function About() {
+   
 
     let history = useNavigate()
     const context = useContext(noteContext)
