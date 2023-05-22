@@ -1,23 +1,35 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState , useEffect} from "react";
 import noteContext from "../context/notes/noteContext";
 
 
 const AddNotes = (props) => {
+    const { phoneNumber, email } = props.user
     const context = useContext(noteContext)
     const { addNote } = context
+    const [note, setNote] = useState({ societyName: "", area: "", totalPrice: "", downPayment: "", location: "", paidInstallments: "", balloted: "", plotNumber: "", discription: "", yearOfPurchase: "" })
+
+    
 
 
-    const [note, setNote] = useState({ societyName: "",  area :"", totalPrice: "", downPayment: "", location: "", paidInstallments: "", balloted: "", plotNumber: "", discription: "", yearOfPurchase: "" , phoneNumber: 9891513 })
+    useEffect(()=>{
+        if(note.phoneNumber){
+
+            setNote({ phoneNumber: phoneNumber, email: email })
+            console.log("from use effect ")
+        }
+
+    },[props.user])  // eslint-disable-line react-hooks/exhaustive-deps
     const handelClick = (e) => {
         e.preventDefault()
-        addNote(note.societyName, note.area, note.totalPrice, note.downPayment, note.location, note.paidInstallments, note.balloted, note.plotNumber, note.discription, note.yearOfPurchase, note.phoneNumber)
-        setNote({ societyName: "", area :"", totalPrice: "", downPayment: "", location: "", paidInstallments: "", balloted: "",plotNumber: "", discription: "", yearOfPurchase: "" })
-        
+
+        addNote(note.societyName, note.area, note.totalPrice, note.downPayment, note.location, note.paidInstallments, note.balloted, note.plotNumber, note.discription, note.yearOfPurchase, phoneNumber, email)
+        setNote({ societyName: "", area: "", totalPrice: "", downPayment: "", location: "", paidInstallments: "", balloted: "", plotNumber: "", discription: "", yearOfPurchase: "" })
         props.showAlert("Note Successfully added", "success")
 
     }
     const onChange = (e) => {
         setNote({ ...note, [e.target.name]: e.target.value })
+        console.log(note.phoneNumber)
 
     }
 
@@ -78,10 +90,10 @@ const AddNotes = (props) => {
                 </div>
                 {
                     note.balloted === "yes" &&
-                        <div className="mb-3">
-                            <label htmlFor="plotNumber" className="form-label">Plot Number</label>
-                            <input type="text" className="form-control" id="plotNumber" name="plotNumber" value={note.plotNumber} onChange={onChange} />
-                        </div>
+                    <div className="mb-3">
+                        <label htmlFor="plotNumber" className="form-label">Plot Number</label>
+                        <input type="text" className="form-control" id="plotNumber" name="plotNumber" value={note.plotNumber} onChange={onChange} />
+                    </div>
                 }
                 <div className="mb-3">
                     <label htmlFor="discription" className="form-label">Discription</label>

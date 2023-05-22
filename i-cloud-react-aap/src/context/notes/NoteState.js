@@ -25,7 +25,7 @@ const NoteStatus = (props) => {
   }
   // phoneNumber
   //   ********************************               Add a Note         *******************************************
-  const addNote = async (societyName, area,  totalPrice, downPayment, location, paidInstallments, balloted, plotNumber,  discription, yearOfPurchase,phoneNumber) => {
+  const addNote = async (societyName, area,  totalPrice, downPayment, location, paidInstallments, balloted, plotNumber,  discription, yearOfPurchase,phoneNumber, email) => {
     // TODO :API call
     const response = await fetch(`${host}/api/notes/addnote`, {
       method: "POST",
@@ -33,7 +33,7 @@ const NoteStatus = (props) => {
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem('token')
       },
-      body: JSON.stringify({ societyName,area,  totalPrice, downPayment, location, paidInstallments, balloted, plotNumber, discription, yearOfPurchase, phoneNumber }),
+      body: JSON.stringify({ societyName,area,  totalPrice, downPayment, location, paidInstallments, balloted, plotNumber, discription, yearOfPurchase, phoneNumber, email }),
     })
   
     const note = await response.json()

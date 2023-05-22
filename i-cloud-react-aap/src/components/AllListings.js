@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { IonIcon } from "@ionic/react"
-import { callSharp } from "ionicons/icons"
+import { callSharp, mail  } from "ionicons/icons"
 const AllListings = (props) => {
 
     const { note } = props
@@ -17,6 +17,7 @@ const AllListings = (props) => {
     
     */
    const [bool, setBool]= useState(false) // for toggle show phone number
+   const [ebool, seteBool]= useState(false) // for toggle show email
     return (
         <>
         <div className="col-md-3">
@@ -36,7 +37,11 @@ const AllListings = (props) => {
                     <p className="card-text border light rounded">Year of Purchase : {note.yearOfPurchase}</p>
                 <button type="button" className="btn btn-primary btn-xlg" href="tel:713-992-0916"  onClick={()=>setBool(!bool)}>
                     {/* toggle show phone number */}
-                    <IonIcon   icon ={callSharp}/> Click to Call {bool && <span className="glyphicon glyphicon-earphone">713-992-0916</span>}
+                    <IonIcon   icon ={callSharp}/> Click to Call {bool && <span className="glyphicon glyphicon-earphone">{note.phoneNumber ? note.phoneNumber: "090078601" }</span>}
+                </button>
+                <button type="button" className="btn btn-primary btn-xlg" href="tel:713-992-0916"  onClick={()=>seteBool(!ebool)}>
+                    {/* toggle show email */}
+                    <IonIcon   icon ={mail}/> Email {ebool && <span className="glyphicon glyphicon-earphone">{note.email ? note.email: "abc@gmail.com" }</span>}
                 </button>
                 {/* <ion-icon name="call"></ion-icon> */}
                 </div>

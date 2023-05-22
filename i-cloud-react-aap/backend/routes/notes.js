@@ -38,7 +38,8 @@ router.post('/addnote', fetchuser, [
         if (!result.isEmpty()) {
             return res.status(400).json({ errors: result.array() });
         }
-        const { societyName,
+        const {
+            societyName,
             totalPrice,
             area,
             downPayment,
@@ -49,6 +50,7 @@ router.post('/addnote', fetchuser, [
             discription,
             yearOfPurchase,
             phoneNumber,
+            email,
         } = req.body;
 
         const note = new Note({
@@ -64,6 +66,7 @@ router.post('/addnote', fetchuser, [
             discription,
             yearOfPurchase,
             phoneNumber,
+            email,
             user: req.user.id
 
         })

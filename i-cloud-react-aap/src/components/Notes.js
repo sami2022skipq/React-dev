@@ -7,7 +7,7 @@ const Notes = (props) => {
     let history = useNavigate()
     const context = useContext(noteContext)
     const { notes, getNotes, editNote, getAllListings } = context
-    const [note, setNote] = useState({ id: '', esocietyName: "", earea: "", etotalPrice: "", edownPayment: "", elocation: "", epaidInstallments: "", eballoted: "", eplotNumber: "", ediscription: "", eyearOfPurchase: "" })
+    const [note, setNote] = useState({ id: '', esocietyName: "", earea: "", etotalPrice: "", edownPayment: "", elocation: "", epaidInstallments: "", eballoted: false, eplotNumber: "", ediscription: "", eyearOfPurchase: "" })
 
     // only load user notes if user is logged in
     useEffect(() => {
@@ -47,7 +47,7 @@ const Notes = (props) => {
     }
     return (
         <>
-            <AddNote showAlert={props.showAlert} />
+            <AddNote showAlert={props.showAlert} user={props.user} />
 
             <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Launch demo modal
@@ -91,7 +91,7 @@ const Notes = (props) => {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="elocation" className="form-label">Location</label>
-                                    <input type="text" className="form-control" id="elocation" name="" value={note.elocation} onChange={onChange} />
+                                    <input type="text" className="form-control" id="elocation" name="elocation" value={note.elocation} onChange={onChange} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="epaidInstallments" className="form-label">Paid Installments</label>

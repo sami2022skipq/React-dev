@@ -49,6 +49,7 @@ const NotesSchema = new Schema({
   phoneNumber: {
     type: Number
   },
+  email : String,
 
   date: {
     type: Date,
