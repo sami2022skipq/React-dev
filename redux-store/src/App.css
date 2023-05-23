@@ -1,7 +1,21 @@
 .App {
   text-align: center;
+  padding: 2px;
+  margin: 16px;
+  border: 2px #282c34;
 }
+.Button {
+  margin: 5px;
+  padding: 2px;
+  border: 2px solid green ;
+  cursor: pointer;
+  
+}
+.Button:hover {
+  border: 2px solid rgb(108, 154, 48) ;
+  background-color: #61dafb;
 
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

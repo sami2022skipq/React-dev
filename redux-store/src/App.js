@@ -46,9 +46,9 @@ function App() {
       <h1>Redux is {isLoggedin ? "Logged In":  ""}</h1>
       <button onClick={()=>dispatch(isLogged())}>Change</button>
       <h2>Counter : {counter}</h2>
-      <button onClick={()=>dispatch(increment(newIValue))}>Increment</button>
-      <button onClick={()=>dispatch(reset())}>Reset</button>
-      <button onClick={()=>dispatch(decrement(newDValue))}>Decrement</button>
+      <button className="Button" onClick={()=>dispatch(increment(newIValue))}>Increment</button>
+      <button className="Button" onClick={()=>dispatch(reset())}>Reset</button>
+      <button className="Button" onClick={()=>dispatch(decrement(newDValue))}>Decrement</button>
     </div>
   );
 }
