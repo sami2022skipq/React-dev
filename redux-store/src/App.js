@@ -2,6 +2,8 @@ import './App.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { decrement, increment , reset} from './actions/counter';
 import { isLogged } from './actions/isLogged';
+import RadioForm from './RadioForm';
+import Range from './Range';
 
 
 // //Action => increment 
@@ -49,6 +51,9 @@ function App() {
       <button className="Button" onClick={()=>dispatch(increment(newIValue))}>Increment</button>
       <button className="Button" onClick={()=>dispatch(reset())}>Reset</button>
       <button className="Button" onClick={()=>dispatch(decrement(newDValue))}>Decrement</button>
+      <RadioForm></RadioForm>
+      <Range></Range>
+      
     </div>
   );
 }
