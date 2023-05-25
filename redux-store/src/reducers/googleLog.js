@@ -1,8 +1,5 @@
-
-const isLoggedReducer = (state = ({}), action) => {
+const gooogleLogReducer = (state = ({}), action) => {
     switch (action.type) {
-        case "CHANGE":
-            return !state
         case "LOGIN":
             return state = action.payload
         case "LOGOUT":
@@ -12,4 +9,4 @@ const isLoggedReducer = (state = ({}), action) => {
     }
 
 }
-export default isLoggedReducer
+export default gooogleLogReducer

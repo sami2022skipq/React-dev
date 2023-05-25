@@ -7,11 +7,11 @@ function RadioForm() {
     setSelectedOption(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Do something with the selected option
-    console.log('Selected option:', selectedOption);
-  };
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   // Do something with the selected option
+  //   console.log('Selected option:', selectedOption);
+  // };
 
   return (
     <div className='form'>

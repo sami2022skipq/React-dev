@@ -33,7 +33,7 @@ export default function About() {
         <>
             <div className="d-flex justify-content-center mb-3">
                 <div className="p-2 w-100">
-                    <label htmlFor="customRange1" className="form-label ">Price Range 0--{( range*1000000).toLocaleString()}</label>
+                    <label htmlFor="customRange1" className="form-label ">Price Range Rs: 0--{( range*1000000).toLocaleString()}</label>
                     <input type="range" className="form-range" min={0} max={100}  id="customRange1" onChange={onChange}></input>
                 </div>
                 <div className="p-2 w-100">
