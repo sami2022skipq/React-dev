@@ -72,7 +72,7 @@ function App() {
     google.accounts.id.renderButton(
       document.getElementById("signInDiv"),
       {
-        themer: "outline", size: "large"
+        theme: "filled_black", size: "large"
       }
     )
     google.accounts.id.prompt()
