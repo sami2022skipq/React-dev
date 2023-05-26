@@ -3,3 +3,4 @@
 # Not include any file from test folder
 /tests
 
+/test-google-auth

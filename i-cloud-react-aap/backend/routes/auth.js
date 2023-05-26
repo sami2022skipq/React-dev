@@ -1,4 +1,5 @@
 const express = require('express')
+const decode = require('jwt-decode')
 
 const bcrypt = require('bcryptjs')
 const User = require('../models/User')
@@ -60,7 +61,7 @@ router.post('/createUser', [
 
 })
 
-// ROUTE 2: Uthenticate a user uding POST /api/auth/login : No login required
+// ROUTE 2:  LOGIN Uthenticate a user uding POST /api/auth/login : No login required
 
 router.post('/login', [
 
@@ -100,7 +101,7 @@ router.post('/login', [
             }
         }
         const authToken = jwt.sign(data, JWt_secret)
-        // console.log(authToken)
+        console.log(decode( authToken))
         success= true
         res.json({success, authToken })
     } catch (error) {
