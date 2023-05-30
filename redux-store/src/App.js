@@ -94,7 +94,7 @@ function App() {
           }
           >logout</button>
           <div>
-            <img src={googleLog.picture} alt="No image" />
+            <img src={googleLog.picture} alt="no-img" />
             <h2>{googleLog.name}</h2>
             <h5>{googleLog.email}</h5>
           </div>
