@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const BallotedFilter = (props) => {
     const { setballoted } = props
-    const [selectedOption, setSelectedOption] = useState('true');
+    const [selectedOption, setSelectedOption] = useState('All');
 
     // const handleOptionChange = (e) => {
     //     console.log(selectedOption)
@@ -21,6 +21,19 @@ const BallotedFilter = (props) => {
     return (
 
         <div className="form-group">
+            <div className="form-check">
+                <input
+                    className="form-check-input"
+                    type="radio"
+                    name="All"
+                    value="All"
+                    checked={selectedOption === 'All'}
+                    onChange={handleOptionChange}
+                />
+                <label className="form-check-label">
+                    All
+                </label>
+            </div>
             
             <div className="form-check">
                 <input
@@ -48,6 +61,7 @@ const BallotedFilter = (props) => {
                     Non-Balloted
                 </label>
             </div>
+            
         </div>
 
     );
