@@ -5,7 +5,8 @@ const SignUp = (props) => {
     let history = useNavigate()
 
     const handelsubmit = async (e) => {
-        const { name, email, password } = credentials
+        let { name, email, password } = credentials
+        email=email.toLocaleLowerCase()
         e.preventDefault()
 
         const response = await fetch(`http://localhost:5000/api/auth/createUser`, {

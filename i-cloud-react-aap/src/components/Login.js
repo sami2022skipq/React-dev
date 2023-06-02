@@ -2,6 +2,8 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 const Login = (props) => {
     const [credentials, setCredentials] = useState({ email: "", password: "" })
+    let {email, password} = credentials
+    email=email.toLocaleLowerCase()
     let history = useNavigate()
 
     const handelsubmit = async (e) => {
@@ -12,7 +14,7 @@ const Login = (props) => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email: credentials.email, password: credentials.password }),
+            body: JSON.stringify({ email, password }),
         })
         const json = await response.json()
         console.log(json)

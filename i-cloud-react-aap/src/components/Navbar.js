@@ -25,18 +25,24 @@ export default function Navbar() {
                     </button>
                     <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         {/* only show navbar [Home, About] if person is logged in  */}
-                        {localStorage.getItem("token") && <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <Link className={`nav-link ${location.pathname === "/" ? "active" : ""}`} aria-current="page" to="/">Home</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} aria-current="page" to="/about">All Listings</Link>
-                            </li>
-                        </ul>}
+                        {localStorage.getItem("token") &&
+                            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li className="nav-item">
+                                    <Link className={`nav-link ${location.pathname === "/" ? "active" : ""}`} aria-current="page" to="/">Home</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className={`nav-link ${location.pathname === "/userhome" ? "active" : ""}`} aria-current="page" to="/userhome">Your Listings</Link>
+                                </li>
+
+                            </ul>
+
+                        }
                         {/* Login/ Signup if not logged in else Logout */}
                         <form className="d-flex" role="search">
                             {localStorage.getItem('token') ?
                                 <>
+                                    {(location.pathname === "/userhome" || location.pathname === "/" ) &&
+                                    <Link className='btn btn-info mx-1' aria-current="page" to="/addanote">Post Add</Link>}
                                     <h5 className="mx-3 mt-2">{user.name}</h5>
                                     <Link className="btn btn-primary mx-1" to='/login' role="button" onClick={() => { localStorage.setItem('token', ""); setUser({ name: "", email: "" }) }}>Log Out</Link>
                                 </>
@@ -44,9 +50,9 @@ export default function Navbar() {
                                 // showing Login and Sigup button based on pathname
                                 <div >
                                     {location.pathname === "/signup" ?
-                                    <Link className="btn btn-primary mx-1" to='/login' role="button">Login</Link>
-                                    :
-                                    <Link className="btn btn-primary mx-1" to='/signup' role="button">Sign Up</Link>}
+                                        <Link className="btn btn-primary mx-1" to='/login' role="button">Login</Link>
+                                        :
+                                        <Link className="btn btn-primary mx-1" to='/signup' role="button">Sign Up</Link>}
                                 </div>
                             }
 

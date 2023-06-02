@@ -20,19 +20,18 @@ const NoteItem = (props) => {
            8 yearOfPurchase
             
             */}
-                    <h6 className="card-title">Society Name : {note.societyName}</h6>
-                    <p className="card-text">Total Price :{note.totalPrice}</p>
-                    <p className="card-text">Area :{note.area}</p>
-                    <p className="card-text">Down Payment : {note.downPayment}</p>
-                    <p className="card-text">Location: {note.location}</p>
-                    <p className="card-text">Paid Installments : {note.paidInstallments}</p>
-                    <p className="card-text">Balloted : {note.balloted ? 'Yes' : 'No'}</p>
-                    {
-                        note.balloted &&
-                        <p className="card-text">Plot Number : {note.plotNumber}</p>
+                    <h6 className="card text-bg-secondary mb-3 "> Society Name : {note.societyName}</h6>
+                    <p className="card-text border light rounded">Area : {note.area}</p>
+                    <p className="card-text border light rounded">Total Price : {(note.totalPrice.toLocaleString())}</p>
+                    <p className="card-text border light rounded">Down Payment : {note.downPayment.toLocaleString()}</p>
+                    <p className="card-text border light rounded">Location : {note.location}</p>
+                    <p className="card-text border light rounded">Paid Installments : {note.paidInstallments}</p>
+                    <p className="card-text border light rounded">Balloted : {note.balloted? 'Yes': 'No'}</p>
+                    {note.balloted &&
+                        <p className="card-text border light rounded">Plot Number : {note.plotNumber}</p>
                     }
-                    <p className="card-text">Discription : {note.discription}</p>
-                    <p className="card-text">Year of Purchase : {note.yearOfPurchase}</p>
+                    <p className="card-text border light rounded">Discription : {note.discription}</p>
+                    <p className="card-text border light rounded">Year of Purchase : {note.yearOfPurchase}</p>
 
 
 

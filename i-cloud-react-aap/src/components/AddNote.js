@@ -1,5 +1,6 @@
-import React, { useContext, useState , useEffect} from "react";
+import React, { useContext, useState } from "react";
 import noteContext from "../context/notes/noteContext";
+import { useNavigate } from 'react-router-dom';
 
 
 const AddNotes = (props) => {
@@ -7,24 +8,25 @@ const AddNotes = (props) => {
     const context = useContext(noteContext)
     const { addNote } = context
     const [note, setNote] = useState({ societyName: "", area: "", totalPrice: "", downPayment: "", location: "", paidInstallments: "", balloted: "", plotNumber: "", discription: "", yearOfPurchase: "" })
-
+    let history = useNavigate()
     
 
 
-    useEffect(()=>{
-        if(note.phoneNumber){
+    // useEffect(()=>{
+    //     if(note.phoneNumber){
 
-            setNote({ phoneNumber: phoneNumber, email: email })
-            console.log("from use effect ")
-        }
+    //         setNote({ phoneNumber: phoneNumber, email: email })
+    //         console.log("from use effect ")
+    //     }
 
-    },[props.user])  // eslint-disable-line react-hooks/exhaustive-deps
+    // },[props.user])  // eslint-disable-line react-hooks/exhaustive-deps
     const handelClick = (e) => {
         e.preventDefault()
 
         addNote(note.societyName, note.area, note.totalPrice, note.downPayment, note.location, note.paidInstallments, note.balloted, note.plotNumber, note.discription, note.yearOfPurchase, phoneNumber, email)
         setNote({ societyName: "", area: "", totalPrice: "", downPayment: "", location: "", paidInstallments: "", balloted: "", plotNumber: "", discription: "", yearOfPurchase: "" })
         props.showAlert("Note Successfully added", "success")
+        history("/userhome")
 
     }
     const onChange = (e) => {

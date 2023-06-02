@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import noteContext from '../context/notes/noteContext';
 import NoteItem from './NoteItem';
-import AddNote from './AddNote';
+// import AddNote from './AddNote';
 import { useNavigate } from 'react-router-dom';
 const Notes = (props) => {
     let history = useNavigate()
     const context = useContext(noteContext)
-    const { notes, getNotes, editNote, getAllListings } = context
+    const { notes, getNotes, editNote } = context
     const [note, setNote] = useState({ id: '', esocietyName: "", earea: "", etotalPrice: "", edownPayment: "", elocation: "", epaidInstallments: "", eballoted: false, eplotNumber: "", ediscription: "", eyearOfPurchase: "" })
 
     // only load user notes if user is logged in
@@ -15,7 +15,7 @@ const Notes = (props) => {
         if (localStorage.getItem('token')) {
 
             getNotes()
-            getAllListings()
+            // getAllListings()
         }
         else {
             history("/login")
@@ -47,7 +47,7 @@ const Notes = (props) => {
     }
     return (
         <>
-            <AddNote showAlert={props.showAlert} user={props.user} />
+            {/* <AddNote showAlert={props.showAlert} user={props.user} /> */}
 
             <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Launch demo modal
