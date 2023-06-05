@@ -7,7 +7,7 @@ import AreaFilter from '../Filters/AreaFilter';
 import userContext from "../context/user/userContext";
 
 
-export default function About() {
+export default function Home() {
 
 
 
@@ -70,7 +70,7 @@ export default function About() {
                 {
                     allListings
                     .filter(n => n.totalPrice <= range * 1000000) // Price filter
-                    .filter(note=> {                        // Balloted filter
+                    .filter(note=> {                              // Balloted filter
                         if (ballotted !== "All")
                         return String(note.balloted) === ballotted
                         return note}) 
@@ -80,7 +80,7 @@ export default function About() {
                             return <AllListings key={note._id} note={note}/>
                             
                         })
-                    }
+                }
                    {/* {
                   console.log(numberOfListing)
                    } */}

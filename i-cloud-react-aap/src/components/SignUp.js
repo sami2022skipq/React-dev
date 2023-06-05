@@ -1,12 +1,12 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 const SignUp = (props) => {
     const [credentials, setCredentials] = useState({ name: "", email: "", password: "" })
     let history = useNavigate()
 
     const handelsubmit = async (e) => {
         let { name, email, password } = credentials
-        email=email.toLocaleLowerCase()
+        email = email.toLocaleLowerCase()
         e.preventDefault()
 
         const response = await fetch(`http://localhost:5000/api/auth/createUser`, {
@@ -56,7 +56,14 @@ const SignUp = (props) => {
                     <label htmlFor="cpassword" className="form-label">Confirm Password</label>
                     <input type="password" className="form-control" id="cpassword" required onChange={onChange} />
                 </div>
-                <button type="submit" className="btn btn-primary">Sign Up</button>
+                <div className="d-flex justify-content-center m-1">
+                    <div>
+                        <button type="submit" className="btn btn-primary">Sign Up</button>
+                    </div>
+                    <div className="m-2">
+                        <p>already have an account: <Link to="/login">Login</Link></p>
+                    </div>
+                </div>
             </form>
         </div>
     )

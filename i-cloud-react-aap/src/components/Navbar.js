@@ -49,9 +49,7 @@ export default function Navbar() {
                                 :
                                 // showing Login and Sigup button based on pathname
                                 <div >
-                                    {location.pathname === "/signup" ?
-                                        <Link className="btn btn-primary mx-1" to='/login' role="button">Login</Link>
-                                        :
+                                    {location.pathname === "/login" &&
                                         <Link className="btn btn-primary mx-1" to='/signup' role="button">Sign Up</Link>}
                                 </div>
                             }

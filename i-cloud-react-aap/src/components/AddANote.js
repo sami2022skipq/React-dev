@@ -2,7 +2,7 @@ import AddNotes from "./AddNote"
 import userContext from "../context/user/userContext";
 import { useContext , useEffect} from "react";
  
-
+// Thi is Add note page contains addnote component
 const AddANote = (props)=>{
 
     const context = useContext(userContext)
