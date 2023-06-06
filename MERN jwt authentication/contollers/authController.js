@@ -1,6 +1,7 @@
 const User = require('../models/user')
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const tokenGenerator = require('../config/createToken')
 const someOtherPlaintextPassword = 'not_bacon';
 
 const registerController = async (req, res) => {
@@ -27,6 +28,7 @@ const registerController = async (req, res) => {
 
     }
 
+
     // Hashing Password
     bcrypt.hash(password, saltRounds)
         .then(hash => {
@@ -39,11 +41,34 @@ const registerController = async (req, res) => {
             })
             newUser.save()
 
+            // Geenerate JW token
+            const token =tokenGenerator({email:newUser.email})
+
             return res.status(201).json({ "success": true, "User": newUser })
         }
         )
         .catch(err => console.error(err.message));
 
 }
+const logInUser = async (req, res) => {
+    const { password, email } = req.body
 
-module.exports = { registerController }
+    const user = await User.findOne({ email })
+    if (!user) {
+
+        return res.status(404).json({ msg: "Incorrect Email or Password" })
+    }
+    
+    // Load hash from your password DB.
+   await  bcrypt.compare(password, user.password).then( (result)=> {
+        if (result){
+            const token =tokenGenerator({email:user.email})
+            console.log("Token : ", token)
+           return res.status(200).json({success :true, msg: `loggedin successfully with ${user.email}`, token:token})
+        }
+       return  res.status(404).json({ msg: "Incorrect Email or Password" })
+        // result == true
+    });
+}
+
+module.exports = { registerController, logInUser }
