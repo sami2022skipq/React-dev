@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const connect = ()=>{
     mongoose.connect(process.env.URI).then(() => {
-        console.log("ok je ho gaya connect finally");
+        console.log("Connected to MERNAuthentication");
     },
     err => { 
         console.log('error: '+ err)
