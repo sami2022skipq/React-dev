@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 const Login = (props) => {
     const [credentials, setCredentials] = useState({ email: "", password: "" })
     let { email, password } = credentials
@@ -63,6 +63,7 @@ const Login = (props) => {
                         Show Password
                     </label>
                 </div>
+                    Forgot password <Link to ="/requestresetpassword">Reset Password</Link>
 
                 <div className="mb-3">
                     <button type="submit" className="btn btn-primary">Login</button>

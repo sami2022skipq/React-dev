@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import SignUp from './components/SignUp';
 import NoteStatus from './context/notes/NoteState';
 import UserState from './context/user/UserState'
+import RequestResetPassword from './components/RequestResetPassword';
 import {
   BrowserRouter as Router,
   Routes,
@@ -41,6 +42,7 @@ function App() {
             <div className='container'>
               <Routes>
                 <Route exact path='/userhome' element={< HomeUser showAlert={showAlert} />}></Route>
+                <Route exact path='/requestresetpassword' element={< RequestResetPassword showAlert={showAlert} />}></Route>
                 <Route exact path='/' element={< Home />}></Route>
                 <Route exact path='/addanote' element={<AddANote showAlert={showAlert}/>}></Route>
                 <Route exact path='/login' element={<Login showAlert={showAlert} />}></Route>
