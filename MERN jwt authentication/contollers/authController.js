@@ -49,7 +49,10 @@ const registerController = async (req, res) => {
         )
         .catch(err => console.error(err.message));
 
+
+    // Route 2 Login  api/auth/login
 }
+
 const logInUser = async (req, res) => {
     const { password, email } = req.body
 

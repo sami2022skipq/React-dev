@@ -1,6 +1,6 @@
 
 const connectToMonggo=  require('./db')
-
+require("dotenv").config();
 const express = require('express')
 var cors = require('cors')
 
