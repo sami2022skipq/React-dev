@@ -62,17 +62,7 @@ const Notes = (props) => {
                         </div>
                         <div className="modal-body">
                             <form>
-                                {/* 
-           1 societyName,
-           2 totalPrice,
-           3 downPayment,
-           4 location,
-           5 paidInstallments,
-           6 balloted,
-           7 discription,
-           8 yearOfPurchase
-            
-            */}
+
                                 <div className="mb-3">
                                     <label htmlFor="esocietyName" className="form-label">Society Name</label>
                                     <input type="text" className="form-control" id="esocietyName" value={note.esocietyName} name="esocietyName" aria-describedby="emailHelp" onChange={onChange} />
@@ -109,7 +99,7 @@ const Notes = (props) => {
                                     </select>
                                 </div>
                                 {
-                                    note.eballoted  &&
+                                    note.eballoted &&
                                     <div className="mb-3">
                                         <label htmlFor="eplotNumber" className="form-label">Plot Number</label>
                                         <input type="text" className="form-control" id="eplotNumber" name="eplotNumber" value={note.eplotNumber} onChange={onChange} />

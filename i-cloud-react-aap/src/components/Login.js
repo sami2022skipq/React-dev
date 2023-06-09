@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import RequestResetPassword from "./RequestResetPassword"
 const Login = (props) => {
     const [credentials, setCredentials] = useState({ email: "", password: "" })
     let { email, password } = credentials
@@ -34,7 +35,7 @@ const Login = (props) => {
     }
     const [toggleSowPassword, setToggleSowPassword] = useState(false)
     const toggle = () => {
-        
+
         setToggleSowPassword(!toggleSowPassword)
 
     }
@@ -63,12 +64,15 @@ const Login = (props) => {
                         Show Password
                     </label>
                 </div>
-                    Forgot password <Link to ="/requestresetpassword">Reset Password</Link>
-
                 <div className="mb-3">
                     <button type="submit" className="btn btn-primary">Login</button>
                 </div>
             </form>
+            <div className="d-flex justify-content-center">
+                <div>
+                    <RequestResetPassword />
+                </div>
+            </div>
         </div>
     )
 }
