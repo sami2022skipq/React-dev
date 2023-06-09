@@ -8,7 +8,7 @@ connectToMonggo();
 
 const app = express()
 const port = 5000
-
+console.log("user : ",process.env.URI_USER)
 app.use(cors())
 app.use(express.json())
 // available routes

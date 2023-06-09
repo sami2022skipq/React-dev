@@ -177,7 +177,7 @@ router.post('/requestResetPassword', async (req, res)=>{
       );
     //   return { link };
 
-    res.status(200).json({success: true, msg: "Password reset code sent on ", email, token :link})
+    res.status(200).json({success: true, msg: `Password reset link sent on  ${email} validity 24hrz` , email, token :link})
 
      
 })
@@ -190,7 +190,8 @@ router.post ('/resetpassword' , async (req, res)=>{
     let passwordResetToken = await Token.findOne({ userId });
   
     if (!passwordResetToken) {
-      throw new Error("Invalid or expired password reset token");
+        return res.status(404).json( {success: false, msg: "Invalid or expired password reset token" });
+    //   throw new Error("Invalid or expired password reset token");
     }
   
     console.log(passwordResetToken.token, token);
@@ -198,7 +199,8 @@ router.post ('/resetpassword' , async (req, res)=>{
     const isValid = await bcrypt.compare(token, passwordResetToken.token);
   
     if (!isValid) {
-      throw new Error("Invalid or expired password reset token");
+    //   throw new Error("Invalid or expired password reset token");
+      return res.status(404).json( {success: false, msg: "Invalid or expired password reset token" });
     }
   
     const hash = await bcrypt.hash(password, Number(bcryptSalt));
@@ -223,7 +225,7 @@ router.post ('/resetpassword' , async (req, res)=>{
     await passwordResetToken.deleteOne();
     
   
-    res.status(200).json( { message: "Password reset was successful" });
+    res.status(200).json( {success: true, msg: "Password reset was successful" });
   })
 
 //ROUTE TEST :
@@ -231,11 +233,11 @@ router.post ('/resetpassword' , async (req, res)=>{
 
 // req.query.page
 
-router.post('/passwordreset', (req, res)=>{
+// router.post('/passwordreset', (req, res)=>{
 
-    let token = req.query.token
-    const id = req.query.id
-    res.status(200).json({token : token, Id :id})
-})
+//     let token = req.query.token
+//     const id = req.query.id
+//     res.status(200).json({token : token, Id :id})
+// })
 
 module.exports = router
