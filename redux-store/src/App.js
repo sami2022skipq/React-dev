@@ -100,25 +100,20 @@ function App() {
           </div>
         </div>
 
-
       }
 
-
-
-
-
-      <h1>Redux is {isLoggedin ? "Logged In" : ""}</h1>
-      <button onClick={() => dispatch(isLogged())}>Change</button>
-      <h2>Counter : {counter}</h2>
-      <button className="Button" onClick={() => dispatch(increment(newIValue))}>Increment</button>
-      <button className="Button" onClick={() => dispatch(reset())}>Reset</button>
-      <button className="Button" onClick={() => dispatch(decrement(newDValue))}>Decrement</button>
-      <RadioForm></RadioForm>
+        <h1>Redux is {isLoggedin ? "Logged In" : ""}</h1>
+        <button onClick={() => dispatch(isLogged())}>Change</button>
+        <h2>Counter : {counter}</h2>
+        <button className="Button" onClick={() => dispatch(increment(newIValue))}>Increment</button>
+        <button className="Button" onClick={() => dispatch(reset())}>Reset</button>
+        <button className="Button" onClick={() => dispatch(decrement(newDValue))}>Decrement</button>
+        <RadioForm></RadioForm>
       <div>
 
-        { Object.keys(googleLog).length === 0 ? <h1>No user is logged in </h1>:
+        {Object.keys(googleLog).length === 0 ? <h1>No user is logged in </h1> :
           <h1>{`${googleLog.name} with ${Object.keys(googleLog).length} other attributes`}</h1>
-          }
+        }
       </div>
 
 
