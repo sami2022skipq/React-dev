@@ -9,6 +9,7 @@ import SignUp from './components/SignUp';
 import NoteStatus from './context/notes/NoteState';
 import UserState from './context/user/UserState'
 import ResetPassword from './components/ResetPassword';
+import Profile from './components/Profile'
 import {
   BrowserRouter as Router,
   Routes,
@@ -47,6 +48,7 @@ function App() {
                 <Route exact path='/addanote' element={<AddANote showAlert={showAlert}/>}></Route>
                 <Route exact path='/login' element={<Login showAlert={showAlert} />}></Route>
                 <Route exact path='/signup' element={< SignUp showAlert={showAlert} />}></Route>
+                <Route exact path='/userProfile' element={< Profile  />}></Route>
               </Routes>
             </div>
           </Router>
