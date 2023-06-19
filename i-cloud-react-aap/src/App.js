@@ -7,7 +7,7 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 import SignUp from './components/SignUp';
 import NoteStatus from './context/notes/NoteState';
-import UserState from './context/user/UserState'
+// import UserState from './context/user/UserState'
 import ResetPassword from './components/ResetPassword';
 import Profile from './components/Profile'
 import {
@@ -33,9 +33,9 @@ function App() {
 
   return (
     <>
-    {/* Note sta */}
-      <NoteStatus>  
-        <UserState>
+      {/* Note sta */}
+      <NoteStatus>
+        {/* <UserState> */}
           <Router>
             {/* wraapping UserState around Home/Navbar to use user Deatail context */}
             <Navbar />
@@ -45,14 +45,14 @@ function App() {
                 <Route exact path='/userhome' element={< HomeUser showAlert={showAlert} />}></Route>
                 <Route exact path='/passwordReset' element={< ResetPassword showAlert={showAlert} />}></Route>
                 <Route exact path='/' element={< Home />}></Route>
-                <Route exact path='/addanote' element={<AddANote showAlert={showAlert}/>}></Route>
+                <Route exact path='/addanote' element={<AddANote showAlert={showAlert} />}></Route>
                 <Route exact path='/login' element={<Login showAlert={showAlert} />}></Route>
                 <Route exact path='/signup' element={< SignUp showAlert={showAlert} />}></Route>
-                <Route exact path='/userProfile' element={< Profile  />}></Route>
+                <Route exact path='/userProfile' element={< Profile />}></Route>
               </Routes>
             </div>
           </Router>
-        </UserState>
+        {/* </UserState> */}
       </NoteStatus>
     </>
   );

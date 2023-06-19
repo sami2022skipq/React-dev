@@ -62,7 +62,7 @@ const AddNotes = (props) => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="totalPrice" className="form-label">Total Price</label>
-                    <input type="text" className="form-control" id="discription" name="totalPrice" value={note.totalPrice} onChange={onChange} />
+                    <input type="text" className="form-control" id="totalPrice" name="totalPrice" value={note.totalPrice} onChange={onChange} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="downPayment" className="form-label">Down Payment</label>

@@ -28,7 +28,7 @@ export default function Navbar() {
                         {localStorage.getItem("token") &&
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li className="nav-item">
-                                    <Link className={`nav-link ${location.pathname === "/" ? "active" : ""}`} aria-current="page" to="/">Home</Link>
+                                <Link className={`nav-link ${location.pathname === "/" ? "active" : ""}`} aria-current="page" to="/">Home</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className={`nav-link ${location.pathname === "/userhome" ? "active" : ""}`} aria-current="page" to="/userhome">Your Listings</Link>
@@ -44,6 +44,8 @@ export default function Navbar() {
                                     {(location.pathname === "/userhome" || location.pathname === "/" ) &&
                                     <Link className='btn btn-info mx-1' aria-current="page" to="/addanote">Post Add</Link>}
                                     <h5 className="mx-3 mt-2">{user.name}</h5>
+                                    <Link  aria-current="page" to="/userProfile"> <i className="fa-sharp fa-solid fa-pen-to-square mx-2"></i></Link>
+                                   
                                     <Link className="btn btn-primary mx-1" to='/login' role="button" onClick={() => { localStorage.setItem('token', ""); setUser({ name: "", email: "" }) }}>Log Out</Link>
                                 </>
                                 :

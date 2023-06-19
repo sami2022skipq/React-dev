@@ -43,7 +43,7 @@ export default function Home() {
 
     const [area, setArea]= useState(20)
     // const [numberOfListings, setNumberOfListings]= useState(0)  to be used for counting number of resulted listings
-    let numberOfListing =0
+    // let numberOfListing =0
     const onChange = (e) => {
         setRange(Number(e.target.value))
         // console.log(`type of range is : ${typeof(range)} and value : ${range}`)
@@ -76,7 +76,7 @@ export default function Home() {
                         return note}) 
                     .filter(n=> n.area <=area) // Area Filter
                         .map((note, index) => {
-                            numberOfListing=index+1
+                            // numberOfListing=index+1
                             return <AllListings key={note._id} note={note}/>
                             
                         })

@@ -1,17 +1,31 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import logo from '../logo192.png'
-
+import userContext from "../context/user/userContext";
 export default function Profile() {
+    const contextuser = useContext(userContext)
+    const { user } = contextuser
+
+    const [eUser, eSetUser] = useState({ name: user.name, email: user.email, phoneNumber: user.phoneNumber })
+
+
+    // const {name, email, phoneNumber}= user
+    useEffect(() => {
+        // getUserData()
+        console.log("user is ", user)
+
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+    const onUpdate = (e) => {
+        eSetUser({... eUser, [e.target.name]:e.target.value})
+
+    }
+
+
     const updateUserInfo = (e) => {
         e.preventDefault()
+        eSetUser(user)
 
-
-
-        //         <div class="alert alert-dismissible">
-        //              <button type="button" class="btn-close" 
-        //             data-bs-dismiss="alert">
-        //              </button>
-        //         </div>
+        console.log(user)
     }
 
     return (
@@ -29,20 +43,20 @@ export default function Profile() {
                 <div className="container d-flex">
                     <div className="container justify-content-center p-2">
 
-                        <form>
+                        <form >
                             <div className="form-group pb-2">
                                 <label className="pb-1" htmlFor="Name">Name</label>
-                                <input type="text" className="form-control" id="Name" aria-describedby="namelHelp" placeholder="Name" />
+                                <input type="text" className="form-control" id="Name" aria-describedby="namelHelp" name="name" placeholder="Name" value ={eUser.name} onChange={onUpdate} />
 
                             </div>
                             <div className="form-group pb-2">
                                 <label className="pb-1" htmlFor="Email">Email</label>
-                                <input disabled type="text" className="form-control" id="Email" aria-describedby="emaillHelp" placeholder="asm640@gmail.com" />
+                                <input disabled type="text" className="form-control" id="Email" aria-describedby="emaillHelp" name="email" placeholder="Email" value={eUser.email} onChange={onUpdate} />
 
                             </div>
                             <div className="form-group pb-2">
                                 <label className="pb-1" htmlFor="Contact">Contact Number</label>
-                                <input type="text" className="form-control" id="Contact" aria-describedby="contactlHelp" placeholder="Contact" />
+                                <input type="text" className="form-control" id="Contact" aria-describedby="contactlHelp" placeholder="Contact" name="phoneNumber" value={eUser.phoneNumber} onChange={onUpdate} />
                             </div>
                             <div className="form-group pb-2">
                                 <label className="pb-1" htmlFor="City">City</label>
@@ -59,13 +73,11 @@ export default function Profile() {
 
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div className="d-flex justify-content-center p-2 m-1">
                     <button type="submit" className="btn btn-primary" onClick={updateUserInfo}>Update</button>
                 </div>
-
             </div>
         </>
 
