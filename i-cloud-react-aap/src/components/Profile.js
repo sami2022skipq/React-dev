@@ -23,9 +23,9 @@ export default function Profile() {
 
     const updateUserInfo = (e) => {
         e.preventDefault()
-        eSetUser(user)
+        // eSetUser(user)
 
-        console.log(user)
+        console.log(eUser)
     }
 
     return (
