@@ -12,8 +12,10 @@ console.log("user : ",process.env.URI_USER)
 app.use(cors())
 app.use(express.json())
 // available routes
-app.use('/api/auth',  require('./routes/auth'))
-app.use('/api/notes',  require('./routes/notes'))
+app.use('/api/auth',  require('./routes/auth'))   //authentication, SignUp, Login, Password Update
+app.use('/api/notes',  require('./routes/notes'))  // user adds , CRUD
+app.use('/api/userinformation', require('./routes/userinformation'))   // User personal information update
+
 app.get('/', (req, res) => {
   res.send('Hello from the other side!')
 })

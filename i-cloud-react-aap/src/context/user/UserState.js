@@ -4,7 +4,7 @@ import { useState } from "react";
 
 
 const UserState =(props)=>{
-    const [user, setUser] = useState({name : "", email: "", phoneNumber: ""})
+    const [user, setUser] = useState({name : "", email: "", phoneNumber: "", id : ""})
     const getUserData = async () => {
         // TODO :API call
         const response = await fetch(`http://localhost:5000/api/auth/getuser`, {
@@ -16,8 +16,8 @@ const UserState =(props)=>{
         })
         const json = await response.json()
         console.log("userDetails  from context is ", json)
-        const {name, email, phoneNumber} = json
-        setUser({name, email, phoneNumber})
+        const {name, email, phoneNumber, _id} = json
+        setUser({name, email, phoneNumber, _id})
     }
     
     return (
