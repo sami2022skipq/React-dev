@@ -56,8 +56,6 @@ export default function Home() {
           <Mybutton/>
           
           <MybuttonCount  count={count} onClick={handelClick}/>
-          <MybuttonCount  count={count} onClick={handelClick}/>
-          <MybuttonCount  count={count} onClick={handelClick}/>
           <button onClick={handelClick}> Count {count} times </button>
           <button onClick={reSet} >reset</button>
         </div>
